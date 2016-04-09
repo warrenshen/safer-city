@@ -20,17 +20,27 @@ class ReportPage extends React.Component {
   }
 
   // --------------------------------------------------
+  // Lifecycle
+  // --------------------------------------------------
+  componentDidMount() {
+    Mapper.attachListener(
+      (lat, lng) => this.syncAutocomplete(lat, lng),
+      'form',
+    );
+  }
+
+  // --------------------------------------------------
   // Helpers
   // --------------------------------------------------
   submitForm() {
     var attributes = {
-      title: this.state.title,
-      description: this.state.description,
-      date: this.state.date,
-      time: this.state.time,
       category: this.state.category,
+      date: this.state.date,
+      description: this.state.description,
       lat: this.state.lat,
       lng: this.state.lng,
+      time: this.state.time,
+      title: this.state.title,
     };
     if (this.state.name != '') {
       attributes[name] = this.state.name
@@ -48,6 +58,11 @@ class ReportPage extends React.Component {
       resolve,
     );
   }
+
+  syncAutocomplete(lat, lng) {
+    this.setState({ lat: lat, lng: lng });
+  }
+
 
   // --------------------------------------------------
   // Render
