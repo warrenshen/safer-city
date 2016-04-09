@@ -1,0 +1,68 @@
+# == Schema Information
+#
+# Table name: reports
+#
+#  id           :integer          not null, primary key
+#  incident_id  :integer
+#  date         :date
+#  time         :time
+#  description  :text
+#  location     :string
+#  country_code :integer
+#  city_code    :integer
+#  area_code    :integer
+#  locatlity    :integer
+#  latitude     :float
+#  longitude    :float
+#  confirm      :boolean
+#  first_name   :string
+#  last_name    :string
+#  more_info    :text
+#  email        :string
+#  approved     :boolean
+#  verified     :boolean
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  incident_id: 1
+  date: 2016-04-08
+  time: 2016-04-08 20:36:42
+  description: MyText
+  location: MyString
+  country_code: 1
+  city_code: 1
+  area_code: 1
+  locatlity: 
+  latitude: 1.5
+  longitude: 1.5
+  confirm: false
+  first_name: MyString
+  last_name: MyString
+  more_info: MyText
+  email: MyString
+  approved: false
+  verified: false
+
+two:
+  incident_id: 1
+  date: 2016-04-08
+  time: 2016-04-08 20:36:42
+  description: MyText
+  location: MyString
+  country_code: 1
+  city_code: 1
+  area_code: 1
+  locatlity: 
+  latitude: 1.5
+  longitude: 1.5
+  confirm: false
+  first_name: MyString
+  last_name: MyString
+  more_info: MyText
+  email: MyString
+  approved: false
+  verified: false
