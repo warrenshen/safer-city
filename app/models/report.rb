@@ -45,4 +45,19 @@ class Report < ActiveRecord::Base
   def set_incident_id
     self.incident_id ||= Report.maximum(:incident_id) + 1
   end
+
+  def generate_texts
+    subscriptions = Subscription.within(5, origin: self)
+    subscriptions.each do |subscription|
+      twilio_client.messages.create(
+        to: subscription.phone_number,
+        from: ENV['TWILIO_PHONE_NUMBER'],
+        body: "Sexual Harassment occured at #{ self.location }"
+      )
+    end
+  end
+
+  def twilio_client
+    Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+  end
 end
