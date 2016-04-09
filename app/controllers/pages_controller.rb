@@ -16,4 +16,8 @@ class PagesController < ApplicationController
 
   end
 
+  def subscribe_success
+
+  end
+
 end

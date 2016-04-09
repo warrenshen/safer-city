@@ -6,6 +6,7 @@ class RouteConstants {
       report: '/report',
       search: '/search',
       subscribe: '/subscribe',
+      subscribeSuccess: '/subscribe/success',
     };
   }
 }
