@@ -20,7 +20,6 @@ class NotifyPage extends React.Component {
       phone_number: this.state.phone_number,
     };
     var params = { subscription: attributes };
-    var resolve = (response) => console.log('hello');
     Requester.post(
       ApiConstants.subscriptions.create,
       params,
