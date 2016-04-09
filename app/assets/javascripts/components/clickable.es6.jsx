@@ -11,7 +11,7 @@ class Clickable extends React.Component {
         React.PropTypes.number,
         React.PropTypes.string,
       ]),
-      className: React.PropTypes.string.isRequired,
+      className: React.PropTypes.string,
       icon: React.PropTypes.string,
       route: React.PropTypes.string,
       type: React.PropTypes.oneOf([
@@ -33,6 +33,7 @@ class Clickable extends React.Component {
     return {
       action: null,
       children: null,
+      className: '',
       content: '',
       icon: '',
       route: '',
