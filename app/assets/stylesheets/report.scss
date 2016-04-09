@@ -1,4 +1,50 @@
 .report-page {
+  .report-container {
+    max-width: 700px;
+  }
+
+  .report-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .report-description {
+    color: $d-gray-80;
+    font-weight: 400;
+    line-height: 1.35;
+  }
+
+  .quick-facts-container {
+    background: $l-gray-50;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .fact {
+  }
+
+  .fact-title {
+    color: $red;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+
+    .fa {
+      margin-right: 5px;
+    }
+  }
+
+  .fact-data {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .report-map {
+    height: 300px;
+    width: 100%;
+  }
 
   #map {
     height: 300px !important;
