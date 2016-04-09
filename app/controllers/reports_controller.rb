@@ -31,15 +31,7 @@ class ReportsController < ApplicationController
   protect_from_forgery except: :create
 
   def index
-    distance = params[:distance] || 10
-    if params[:lat] and params[:lng]
-      @reports = Report.within(distance, origin: [params[:lat], params[:lng]]).includes(:categories)
-    else
-      @reports = Report.includes(:categories).all
-    end
-    if params[:limit]
-      @reports = @reports.last(params[:limit])
-    end
+    get_reports
     render json: @reports, each_serializer: ReportsSerializer
   end
 
