@@ -58,8 +58,10 @@ class Report < ActiveRecord::Base
   end
 
   def set_categories
-    self.creation_categories.each do |category|
-      self.categories << Category.find_or_create_by(name: category.downcase)
+    if self.creation_categories
+      self.creation_categories.each do |category|
+        self.categories << Category.find_or_create_by(name: category.downcase)
+      end
     end
   end
 
