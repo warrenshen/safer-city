@@ -20,6 +20,7 @@ class SubscribePage extends React.Component {
       phone_number: this.state.phone_number,
     };
     var params = { subscription: attributes };
+    var resolve = (response) => window.location = RouteConstants.pages.subscribeSuccess;
     Requester.post(
       ApiConstants.subscriptions.create,
       params,

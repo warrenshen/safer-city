@@ -12,7 +12,6 @@ class Header extends React.Component {
               <img src="/assets/logo.jpg"/>
             </div>
           </a>
-          <div className="nav-search-container"><SearchBar/></div>
           <ul className="nav-links">
             <li className="link">
               <Clickable
