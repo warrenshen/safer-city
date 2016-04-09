@@ -60,6 +60,15 @@ class ReportsController < ApplicationController
     end
   end
 
+  def time_stats
+    get_reports
+    stats = Hash.new(0)
+    @reports.each do |report|
+      stats[report.datetime.hour] += 1
+    end
+    render json: stats
+  end
+
   private
 
   def report_params

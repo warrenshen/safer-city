@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   get "submit/success", to: "pages#submit_success"
   get "subscribe", to: "pages#subscribe"
   get "subscribe/success", to: "pages#subscribe_success"
-  resources :reports, only: [:create, :index, :show]
+  resources :reports, only: [:create, :index, :show] do
+    collection do
+      get "time_stats", to: "reports#time_stats"
+    end
+  end
   resources :subscriptions, only: [:create]
   resources :categories, only: [:index]
 
