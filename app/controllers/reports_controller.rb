@@ -35,7 +35,10 @@ class ReportsController < ApplicationController
     if params[:lat] and params[:lng]
       @reports = Report.within(distance, origin: [params[:lat], params[:lng]]).includes(:categories)
     else
-      @reports = Report.all.includes(:categories)
+      @reports = Report.includes(:categories).all
+    end
+    if params[:limit]
+      @reports = @reports.last(params[:limit])
     end
     render json: @reports, each_serializer: ReportsSerializer
   end
