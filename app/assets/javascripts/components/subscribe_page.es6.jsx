@@ -7,8 +7,20 @@ class SubscribePage extends React.Component {
     super();
     this.state = {
       email: '',
+      lat: null,
+      lng: null,
       phone_number: '',
     };
+  }
+
+  // --------------------------------------------------
+  // Lifecycle
+  // --------------------------------------------------
+  componentDidMount() {
+    Mapper.attachListener(
+      (lat, lng) => this.syncAutocomplete(lat, lng),
+      'form',
+    );
   }
 
   // --------------------------------------------------
@@ -17,6 +29,8 @@ class SubscribePage extends React.Component {
   submitForm() {
     var attributes = {
       email: this.state.email,
+      lat: this.state.lat,
+      lng: this.state.lng,
       phone_number: this.state.phone_number,
     };
     var params = { subscription: attributes };
@@ -26,6 +40,10 @@ class SubscribePage extends React.Component {
       params,
       resolve,
     );
+  }
+
+  syncAutocomplete(lat, lng) {
+    this.setState({ lat: lat, lng: lng });
   }
 
   // --------------------------------------------------
@@ -39,16 +57,23 @@ class SubscribePage extends React.Component {
           <h1 className="page-title">Subscribe</h1>
           <p className="description">Receive a notification whenever there is a report near your location.</p>
           <form className="notify-form">
+            <div className="map-container">
+              <input
+                className="controls"
+                id="pac-input"
+                placeholder="Search" />
+              <div id="map" style={{height: "512"}}></div>
+            </div>
             <FormQuestion
               action={(event) => this.setState({ email: event.target.value })}
               label="Email"
-              value={this.state.email}
-              type="email" />
+              type="email"
+              value={this.state.email} />
             <FormQuestion
               action={(event) => this.setState({ email: event.target.value })}
               label="Phone Number"
-              value={this.state.phone_number}
-              type="tel" />
+              type="tel"
+              value={this.state.phone_number} />
             <Clickable
               action={() => this.submitForm()}
               className="btn--solid submit-btn"
