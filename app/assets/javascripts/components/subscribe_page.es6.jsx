@@ -1,4 +1,4 @@
-class NotifyPage extends React.Component {
+class SubscribePage extends React.Component {
 
   // --------------------------------------------------
   // Setup
@@ -35,7 +35,7 @@ class NotifyPage extends React.Component {
       <div className="notify-page">
         <Header />
         <div className="container form-container">
-          <h1 className="page-title">Notifications</h1>
+          <h1 className="page-title">Subscribe</h1>
           <p className="description">Receive a notification whenever there is a report near your location.</p>
           <form className="notify-form">
             <FormQuestion

@@ -107,9 +107,25 @@ class HomePage extends React.Component {
               <SearchBar/>
             </div>
             <ul className="nav-links">
-              <li className="link"><a href={RouteConstants.pages.search}>Map</a></li>
-              <li className="link"><a href={RouteConstants.pages.notify}>Notifications</a></li>
-              <li className="link"><a className="btn btn--solid">New Report</a></li>
+              <li className="link">
+                <Clickable
+                  content="Search"
+                  route={RouteConstants.pages.search}
+                  type="none" />
+              </li>
+              <li className="link">
+                <Clickable
+                  content="Subscribe"
+                  route={RouteConstants.pages.subscribe}
+                  type="none" />
+              </li>
+              <li className="link">
+                <Clickable
+                  className="btn btn--solid"
+                  content="New Report"
+                  route={RouteConstants.pages.report}
+                  type="none" />
+              </li>
             </ul>
           </div>
         </nav>
