@@ -37,7 +37,13 @@ class Report < ActiveRecord::Base
   has_many :report_categories
   has_many :categories, through: :report_categories
 
+  before_create :set_incident_id
+
   def category_names
     categories.pluck(:name).map(&:titlecase)
+  end
+
+  def set_incident_id
+    self.incident_id = Report.maximum(:incident_id) + 1
   end
 end

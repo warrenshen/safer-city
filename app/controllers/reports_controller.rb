@@ -28,12 +28,30 @@
 #
 
 class ReportsController < ApplicationController
+  protect_from_forgery except: :create
+
   def index
-    if params[:distance] and params[:lat] and params[:lng]
-      @reports = Report.within(params[:distance], origin: [params[:lat], params[:lng]]).includes(:categories)
+    distance = params[:distance] || 10
+    if params[:lat] and params[:lng]
+      @reports = Report.within(distance, origin: [params[:lat], params[:lng]]).includes(:categories)
     else
       @reports = Report.all.includes(:categories)
     end
     render json: @reports, each_serializer: ReportsSerializer
+  end
+
+  def create
+    @report = Report.new(report_params)
+    if @report.save
+      render json: @report
+    else
+      render json: @report, status: 422
+    end
+  end
+
+  private
+
+  def report_params
+    params.require(:report).permit!
   end
 end
