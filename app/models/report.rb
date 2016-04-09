@@ -27,7 +27,7 @@
 #
 
 class Report < ActiveRecord::Base
-  attr_accessor :date, :time
+  attr_accessor :date, :time, :creation_categories
   acts_as_mappable :default_units => :miles,
                    :default_formula => :sphere,
                    :distance_field_name => :distance,
@@ -39,6 +39,7 @@ class Report < ActiveRecord::Base
 
   before_create :set_incident_id
   before_create :set_datetime
+  before_create :set_categories
 
   def self.locations_count
     select(:location).map(&:location).uniq.count
@@ -54,6 +55,12 @@ class Report < ActiveRecord::Base
 
   def set_datetime
     self.datetime ||= DateTime.parse("#{ self.date } #{ self.time }")
+  end
+
+  def set_categories
+    self.creation_categories.each do |category|
+      self.categories << Category.find_or_create_by(name: category.downcase)
+    end
   end
 
   def severity
