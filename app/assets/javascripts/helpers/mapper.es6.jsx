@@ -42,27 +42,45 @@ class Mapper {
       var miles = 20;
 
       // TODO: get stats and markers and set markers
-      var resolve = (response) => {
-          console.log(response);
+      var markerresolve = (response) => {
 
           // Clear out the old markers.
           markers.forEach((marker) => marker.setMap(null));
           markers = [];
-          var statsDict = []
-          var markerArray = [];
-          var arrayLength = markerArray.length;
+          var arrayLength = response.reports.length;
           for (var i = 0; i < arrayLength; i++) {
-          var marker = new google.maps.Marker({
-            position: {lat: lat, lng: lng},
-            map: map,
-            title: 'Hello World!'
-          });
-      }
-          this.listener(statsDict);
-        };
+            var markerLat = response.reports[i].latitude
+            var markerLng = response.reports[i].longitude
+            var markerTitle = response.reports[i].title
+            var markerDesc = response.reports[i].description
+
+            var marker = new google.maps.Marker({
+              position: {lat: markerLat, lng: markerLng},
+              map: map,
+              title: markerTitle
+            });
+
+            marker.addListener('click', function() {
+              var infowindow = new google.maps.InfoWindow({
+                content: markerDesc
+              });
+              infowindow.open(map, marker);
+            });
+          }
+      };
+
       Requester.get(
-        ApiConstants.reports.search(lat, lng, miles),
-        resolve,
+        ApiConstants.reports.search(lat, lng),
+        markerresolve,
+      );
+
+      var statsresolve = (response) => {
+        this.listener(response.categories);
+      };
+
+      Requester.get(
+        ApiConstants.categories.search(lat, lng),
+        statsresolve,
       );
 
       if (places.length == 0) {
