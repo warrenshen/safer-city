@@ -17,6 +17,16 @@ class SubmitPage extends React.Component {
   }
 
   // --------------------------------------------------
+  // Props
+  // --------------------------------------------------
+  static get propTypes() {
+    return {
+      locationsCount: React.PropTypes.number.isRequired,
+      reportsCount: React.PropTypes.number.isRequired,
+    };
+  }
+
+  // --------------------------------------------------
   // Lifecycle
   // --------------------------------------------------
   componentDidMount() {
@@ -62,6 +72,16 @@ class SubmitPage extends React.Component {
         <div className="container form-container">
           <h1 className="page-title">Submit a report</h1>
           <p className="description">Help spread awareness and keep your neighborhood safe.</p>
+          <div className="submit-stats-container">
+            <div className="stat">
+              <h1>{this.props.locationsCount}</h1>
+              <h3>Total distinct locations</h3>
+            </div>
+            <div className="stat">
+              <h1>{this.props.reportsCount}</h1>
+              <h3>Total notifications</h3>
+            </div>
+          </div>
           <form className="report-form">
             <label className="form-label">Location</label>
             <div className="map-container">
