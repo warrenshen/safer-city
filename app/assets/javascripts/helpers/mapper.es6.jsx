@@ -179,7 +179,7 @@ class Mapper {
               }
 
               var cResolve = (cResponse) => {
-                this.listener(aResponse.reports, bResponse.categories, cResponse.stats);
+                this.listener(aResponse.reports, bResponse.categories, cResponse);
 
               }
 

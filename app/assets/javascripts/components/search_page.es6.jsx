@@ -28,7 +28,7 @@ class SearchPage extends React.Component {
     this.setState({
       categories: categories,
       reports: reports,
-      time_stats: stats,
+      stats: stats,
     });
   }
 
@@ -45,7 +45,8 @@ class SearchPage extends React.Component {
             <h2 className="category-title">Statistics by location</h2>
             <SearchGraphs
               categories={this.state.categories}
-              reports={this.state.reports} />
+              reports={this.state.reports}
+              stats={this.state.stats} />
             <SearchReports reports={this.state.reports} />
           </div>
         </div>

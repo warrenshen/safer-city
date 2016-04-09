@@ -93,16 +93,35 @@ class SearchGraphs extends React.Component {
       .attr("height", 20)
       .text("Crime Categories")
     // BAR GRAPH
-    var data = {}
-    console.log(this.state.time_stats)
+    var data = {"regions": [], "institutions": []}
 
     if (this.state.time_frame == 'month') {
-
+      var dict = this.props.stats.monthly
+      for (var key in dict) {
+        if (dict.hasOwnProperty(key)) {
+          data.regions.push(key)
+          data.institutions.push(dict[key])
+        }
+      }
     } else if (this.state.time_frame == 'year') {
-
+      var dict = this.props.stats.yearly
+      for (var key in dict) {
+        if (dict.hasOwnProperty(key)) {
+          data.regions.push(key)
+          data.institutions.push(dict[key])
+        }
+      }
     } else {
-
+      for (var key in this.props.stats.hourly) {
+        var dict = this.props.stats.hourly
+        if (dict.hasOwnProperty(key)) {
+          data.regions.push(key)
+          data.institutions.push(dict[key])
+        }
+      }
     }
+
+    console.log(data)
 
     var margin = {
             "top": 10,
