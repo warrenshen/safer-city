@@ -1,0 +1,17 @@
+.report-page {
+
+  #map {
+    height: 300px !important;
+  }
+
+  .gmnoprint {
+    display: none;
+  }
+
+  #pac-input {
+    left: 50% !important;
+    margin-left: 0;
+    top: 15px !important;
+    @include transform(translateX(-50%));
+  }
+}

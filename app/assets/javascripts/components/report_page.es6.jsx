@@ -64,7 +64,7 @@ class ReportPage extends React.Component {
           <h1 className="page-title">Submit a Report</h1>
           <p className="description">Help spread awareness and keep your neighborhood safe.</p>
           <form className="report-form">
-            <p>Location</p>
+            <label className="form-label">Location</label>
             <div className="map-container">
               <input
                 className="controls"
