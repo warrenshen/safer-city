@@ -6,6 +6,7 @@ gem "rails", "4.2.1"
 # Core
 gem "active_model_serializers", "0.9.4"
 gem "d3-rails"
+gem "figaro", '1.1.1'
 gem "pg", "0.18.4"
 gem "react-rails", "1.5.0"
 gem "roo"
