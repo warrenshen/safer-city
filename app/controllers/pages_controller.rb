@@ -4,6 +4,10 @@ class PagesController < ApplicationController
 
   end
 
+  def report
+
+  end
+
   def search
 
   end

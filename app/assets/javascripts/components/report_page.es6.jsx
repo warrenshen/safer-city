@@ -1,14 +1,13 @@
-class HomePage extends React.Component {
+class ReportPage extends React.Component {
 
   // --------------------------------------------------
   // Render
   // --------------------------------------------------
   render() {
     return (
-      <div className="home-page">
-        <div className="home-grid">
-          <SearchBar />
-        </div>
+      <div className="report-page">
+        <Header />
+
       </div>
     );
   }
