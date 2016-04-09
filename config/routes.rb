@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     end
   end
   resources :subscriptions, only: [:create]
+  resources :categories, only: [:index]
 
 end
