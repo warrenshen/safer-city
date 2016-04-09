@@ -9,8 +9,9 @@ class SubmitPage extends React.Component {
       category: '',
       date: '',
       description: '',
-      lat: '',
-      lng: '',
+      lat: null,
+      lng: null,
+      location: '',
       time: '',
       title: '',
     };
@@ -31,7 +32,7 @@ class SubmitPage extends React.Component {
   // --------------------------------------------------
   componentDidMount() {
     Mapper.attachListener(
-      (lat, lng) => this.syncAutocomplete(lat, lng),
+      (location, lat, lng) => this.syncAutocomplete(location, lat, lng),
       'form',
     );
   }
@@ -45,10 +46,12 @@ class SubmitPage extends React.Component {
       date: this.state.date,
       description: this.state.description,
       latitude: this.state.lat,
+      location: this.state.location,
       longitude: this.state.lng,
       time: this.state.time,
       title: this.state.title,
     };
+    console.log(attributes);
     var params = { report: attributes };
     var resolve = (response) => window.location = RouteConstants.pages.submitSuccess;
     Requester.post(
@@ -58,8 +61,8 @@ class SubmitPage extends React.Component {
     );
   }
 
-  syncAutocomplete(lat, lng) {
-    this.setState({ lat: lat, lng: lng });
+  syncAutocomplete(location, lat, lng) {
+    this.setState({ location: location, lat: lat, lng: lng });
   }
 
   // --------------------------------------------------
