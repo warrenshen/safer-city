@@ -17,7 +17,8 @@ class PagesController < ApplicationController
   end
 
   def subscribe
-
+    @locations_count = Notification.locations_count
+    @notifications_count = Notification.count
   end
 
   def subscribe_success

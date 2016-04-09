@@ -14,6 +14,16 @@ class SubscribePage extends React.Component {
   }
 
   // --------------------------------------------------
+  // Props
+  // --------------------------------------------------
+  static get propTypes() {
+    return {
+      locationsCount: React.PropTypes.number.isRequired,
+      notificationsCount: React.PropTypes.number.isRequired,
+    };
+  }
+
+  // --------------------------------------------------
   // Lifecycle
   // --------------------------------------------------
   componentDidMount() {
@@ -54,6 +64,8 @@ class SubscribePage extends React.Component {
       <div className="notify-page">
         <Header />
         <div className="container form-container">
+          <h3>{`Total distinct locations: ${this.props.locationsCount}`}</h3>
+          <h3>{`Total notifications: ${this.props.notificationsCount}`}</h3>
           <h1 className="page-title">Subscribe</h1>
           <p className="description">Receive a notification whenever there is a report near your location.</p>
           <form className="notify-form">
@@ -82,6 +94,7 @@ class SubscribePage extends React.Component {
               type="none" />
           </form>
         </div>
+        <Footer />
       </div>
     );
   }

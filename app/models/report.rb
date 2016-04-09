@@ -58,6 +58,11 @@ class Report < ActiveRecord::Base
         from: ENV['TWILIO_PHONE_NUMBER'],
         body: "Sexual Harassment occured at #{ self.location }"
       )
+      Notification.create(
+        latitude: latitude,
+        longitude: longitude,
+        phone_number: subscription.phone_number,
+      )
     end
   end
 

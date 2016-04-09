@@ -15,7 +15,7 @@ class SearchReports extends React.Component {
   render() {
     let title;
     if (this.props.reports.length > 0) {
-      title = <h2 className="category-title">Recent Reports</h2>
+      title = <h2 className="category-title">Recent reports nearby</h2>
     } else {
       title = false;
     }
