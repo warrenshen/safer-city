@@ -112,10 +112,24 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
       }
     }
   }
-}
 
-@media all and (max-width: 670px) {
-      .reports-grid {
-        -webkit-column-count: 1 !important;
-      }
+  @media all and (max-width: 670px) {
+    .nav-hide {
+      display: none;
     }
+
+    .search-bar input {
+      min-width: auto;
+      width: 100%;
+    }
+
+    .home-reports-container {
+      max-width: 450px;
+    }
+
+    .reports-grid {
+      @include prefixer(column-count, 1);
+      @include prefixer(column-gap, 0);
+    }
+  }
+}
