@@ -30,7 +30,7 @@ class ReportsController < ApplicationController
   protect_from_forgery except: :create
 
   def recent
-    @reports = Report.order(created_at DESC).first(10)
+    @reports = Report.order(created_at: "DESC").first(10)
     render json: @reports, each_serializer: ReportsSerializer
   end
 
@@ -50,7 +50,14 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @report = Report.find params[:id]
+    @id = params[:id].to_i
+    respond_to do |format|
+      format.html
+      format.json {
+        @report = Report.find @id
+        render json: @report, serializer: ReportsSerializer
+      }
+    end
   end
 
   private

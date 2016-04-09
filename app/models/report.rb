@@ -47,7 +47,7 @@ class Report < ActiveRecord::Base
   end
 
   def severity
-    categories.map(&:severity).min
+    categories.map(&:severity).min || 2
   end
 
   def generate_texts

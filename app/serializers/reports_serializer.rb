@@ -6,5 +6,6 @@ class ReportsSerializer < BaseSerializer
              :location,
              :description,
              :category_names,
-             :severity
+             :severity,
+             :datetime
 end

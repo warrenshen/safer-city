@@ -4,19 +4,11 @@ class HomePage extends React.Component {
   // Setup
   // --------------------------------------------------
   constructor(props) {
-      super(props);
-      this.state = {
-        scrollState: false,
-        secondCount: 0,
-      };
-  }
-
-  // --------------------------------------------------
-  // Props
-  // --------------------------------------------------
-  static get propTypes() {
-    return {
-      reports: React.PropTypes.array.isRequired,
+    super(props);
+    this.state = {
+      reports: [],
+      scrollState: false,
+      secondCount: 0,
     };
   }
 
@@ -52,6 +44,11 @@ class HomePage extends React.Component {
     });
 
     this.loop(this);
+    var resolve = (response) => this.setState({ reports: response.reports });
+    Requester.get(
+      ApiConstants.reports.recent,
+      resolve,
+    );
   }
 
   // --------------------------------------------------
@@ -119,7 +116,7 @@ class HomePage extends React.Component {
           </div>
           <div className="home-reports-container">
             <h1 className="stats-title">Recent reports</h1>
-            <ReportsGrid reports={this.props.reports} />
+            <ReportsGrid reports={this.state.reports} />
           </div>
         </div>
         <Footer />

@@ -1,5 +1,5 @@
-$color-list: $red, $orange, $yellow;
-$severity-list: '0', '1', '2';
+$color-list: $red, $orange, $purple;
+$severity-list: 'SEVERE', 'MODERATE', 'MILD';
 
 * {
   box-sizing: border-box;
@@ -153,7 +153,7 @@ $severity-list: '0', '1', '2';
   @each $color in $color-list {
     $i: index($color-list, $color);
 
-    .severity-#{$i} {
+    .severity-#{$i - 1} {
       color: nth($color-list, $i);
 
       &:after {

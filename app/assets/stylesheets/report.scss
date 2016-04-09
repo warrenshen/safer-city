@@ -1,6 +1,10 @@
+$color-list: $red, $orange, $purple;
+$severity-list: 'SEVERE', 'MODERATE', 'MILD';
+
 .report-page {
   .report-container {
     max-width: 700px;
+    padding-bottom: 60px;
   }
 
   .report-title {
@@ -18,20 +22,45 @@
   .quick-facts-container {
     background: $l-gray-50;
     margin-bottom: 20px;
-    padding: 20px;
+    padding-bottom: 20px;
   }
 
   .fact {
+    margin-bottom: 13px;
+    padding: 0 20px;
   }
 
   .fact-title {
-    color: $red;
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 8px;
 
     .fa {
       margin-right: 5px;
+    }
+  }
+
+  .severity-container {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 14px 20px;
+  }
+
+  @each $color in $color-list {
+    $i: index($color-list, $color);
+
+    .severity-#{$i - 1} {
+      background: nth($color-list, $i);
+
+      &:after {
+        content: nth($severity-list, $i);
+      }
+    }
+
+    .title-#{$i - 1} {
+      color: nth($color-list, $i);
     }
   }
 
@@ -42,7 +71,8 @@
   }
 
   .report-map {
-    height: 300px;
+    height: 200px;
+    margin-bottom: 40px;
     width: 100%;
   }
 
