@@ -8,14 +8,16 @@ class FormQuestion extends React.Component {
       action: React.PropTypes.func.isRequired,
       error:  React.PropTypes.string,
       label:  React.PropTypes.string.isRequired,
-      value:  React.PropTypes.string.isRequired,
+      style:  React.PropTypes.oneOf(['input', 'textarea']).isRequired,
       type:   React.PropTypes.string.isRequired,
+      value:  React.PropTypes.string.isRequired,
     };
   }
 
   static get defaultProps() {
     return {
       error: '',
+      style: 'input',
     };
   }
 
@@ -41,14 +43,29 @@ class FormQuestion extends React.Component {
     }
   }
 
-  render() {
-    return (
-      <div className="form-question">
-        <label>{this.props.label}</label>
+  renderPrompt() {
+    if (this.props.style === 'input') {
+      return (
         <input
           className="form-input"
           ref="input"
           type={`${this.props.type}`} />
+      );
+    } else if (this.props.style === 'textarea') {
+      return (
+        <textarea
+          className="form-input"
+          ref="input"
+          type={`${this.props.type}`} />
+      );
+    }
+  }
+
+  render() {
+    return (
+      <div className="form-question">
+        <label>{this.props.label}</label>
+        {this.renderPrompt()}
         {this.renderError()}
       </div>
     );
