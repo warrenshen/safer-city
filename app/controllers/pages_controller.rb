@@ -4,15 +4,15 @@ class PagesController < ApplicationController
 
   end
 
-  def report
-
-  end
-
-  def report_success
-
-  end
-
   def search
+
+  end
+
+  def submit
+
+  end
+
+  def submit_success
 
   end
 
