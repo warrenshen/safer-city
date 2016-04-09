@@ -5,11 +5,7 @@ Rails.application.routes.draw do
   get "notify", to: "pages#notify"
   get "report", to: "pages#report"
   get "search", to: "pages#search"
-  resources :reports, only: [:index, :create] do
-    collection do
-      get "/recent", to: "reports#recent"
-    end
-  end
+  resources :reports, only: [:index, :create]
   resources :subscriptions, only: [:create]
   resources :categories, only: [:index]
 
