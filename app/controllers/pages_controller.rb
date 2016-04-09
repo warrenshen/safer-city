@@ -4,15 +4,15 @@ class PagesController < ApplicationController
 
   end
 
-  def notify
-
-  end
-
   def report
 
   end
 
   def search
+
+  end
+
+  def subscribe
 
   end
 

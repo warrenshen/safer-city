@@ -7,6 +7,12 @@ class ApiConstants {
       },
     };
   }
+
+  get subscriptions() {
+    return {
+      create: '/subscriptions',
+    };
+  }
 }
 
 window.ApiConstants = new ApiConstants();
