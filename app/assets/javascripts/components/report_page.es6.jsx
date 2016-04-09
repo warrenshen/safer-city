@@ -6,16 +6,13 @@ class ReportPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: '',
-      description: '',
-      date: '',
-      time: '',
       category: '',
+      date: '',
+      description: '',
       lat: '',
       lng: '',
-      name: '',
-      phone_number: '',
-      email: '',
+      time: '',
+      title: '',
     };
   }
 
@@ -34,26 +31,18 @@ class ReportPage extends React.Component {
   // --------------------------------------------------
   submitForm() {
     var attributes = {
-      category: this.state.category,
+      // category: this.state.category,
       date: this.state.date,
       description: this.state.description,
-      lat: this.state.lat,
-      lng: this.state.lng,
+      latitude: this.state.lat,
+      longitude: this.state.lng,
       time: this.state.time,
       title: this.state.title,
     };
-    if (this.state.name != '') {
-      attributes[name] = this.state.name
-    }
-    if (this.state.phone_number != '') {
-      attributes[phone_number] = this.state.phone_number
-    }
-    if (this.state.email != '') {
-      attributes[email] = this.state.email
-    }
-    var params = { subscription: attributes };
+    var params = { report: attributes };
+    var resolve = (response) => window.location = RouteConstants.pages.reportSuccess;
     Requester.post(
-      ApiConstants.submissions.create,
+      ApiConstants.reports.create,
       params,
       resolve,
     );
@@ -75,6 +64,14 @@ class ReportPage extends React.Component {
           <h1 className="page-title">Submit a Report</h1>
           <p className="description">Help spread awareness and keep your neighborhood safe.</p>
           <form className="report-form">
+            <p>Location</p>
+            <div className="map-container">
+              <input
+                className="controls"
+                id="pac-input"
+                placeholder="Search" />
+              <div id="map" style={{height: "512"}}></div>
+            </div>
             <FormQuestion
               action={(event) => this.setState({ title: event.target.value })}
               label="Title"
@@ -107,30 +104,6 @@ class ReportPage extends React.Component {
               label="Category"
               value={this.state.category}
               type="select" />
-            <label>Location</label>
-            <div className="map-container">
-              <input
-                className="controls"
-                id="pac-input"
-                placeholder="Search" />
-              <div id="map" style={{height: "100"}}></div>
-            </div>
-            <h2 className="form-section-title">Optional</h2>
-            <FormQuestion
-              action={(event) => this.setState({ title: event.target.value })}
-              label="Full Name"
-              value={this.state.title}
-              type="text" />
-            <FormQuestion
-              action={(event) => this.setState({ phone_number: event.target.value })}
-              label="Phone number"
-              value={this.state.phone_number}
-              type="tel" />
-            <FormQuestion
-              action={(event) => this.setState({ email: event.target.value })}
-              label="Email"
-              value={this.state.email}
-              type="email" />
             <Clickable
               action={() => this.submitForm()}
               className="btn--solid submit-btn"
