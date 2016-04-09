@@ -35,10 +35,28 @@ class SearchGraphs extends React.Component {
     color = d3.scale.category20c();     //builtin range of colors
 
     var data = []
-    var cat_array_length = this.props.categories.length;
-    for (var i = 0; i < cat_array_length; i++) {
-      var element = this.props.categories[i]
-      data.push({"label": element.name, "value": element.reports_count});
+    if (this.state.time_frame == 'month') {
+      var cat_array_length = this.props.categories.length;
+      for (var i = 0; i < cat_array_length; i++) {
+        if (i % 2 == 0) {
+          var element = this.props.categories[i]
+          data.push({"label": element.name, "value": element.reports_count});
+        }
+      }
+    } else if (this.state.time_frame == 'year') {
+      var cat_array_length = this.props.categories.length;
+      for (var i = 0; i < cat_array_length; i++) {
+        if (i % 3 == 0) {
+          var element = this.props.categories[i]
+          data.push({"label": element.name, "value": element.reports_count});
+        }
+      }
+    } else {
+      var cat_array_length = this.props.categories.length;
+      for (var i = 0; i < cat_array_length; i++) {
+        var element = this.props.categories[i]
+        data.push({"label": element.name, "value": element.reports_count});
+      }
     }
 
     var vis = d3.select("#d3-pie-chart")
@@ -76,7 +94,8 @@ class SearchGraphs extends React.Component {
       .text("Crime Categories")
     // BAR GRAPH
     var data = {
-    "regions": ["Federal", "Tigray", "Afar", "Amhara", "Oromia", "Gambella", "Addis Ababa", "Dire Dawa", "Harar", "Benishangul-Gumuz", "Somali", "SNNPR "],
+    "regions": ["1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", 
+    "10PM", "11PM", "12AM"],
     "institutions": [0, 0, 34, 421, 738, 0, 218, 22, 22, 109, 0, 456]
     }
 
