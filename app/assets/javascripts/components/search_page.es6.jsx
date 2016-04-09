@@ -26,12 +26,16 @@ class SearchPage extends React.Component {
   // Render
   // --------------------------------------------------
   render() {
+    console.log(this.state);
     return (
       <div className="search-page">
         <Header />
         <div className="page-container">
           <SearchMap />
-          <SearchGraphs />
+          <div className="data-container">
+            <SearchGraphs reports={this.state.reports} />
+            <SearchReports reports={this.state.reports} />
+          </div>
         </div>
       </div>
     );
