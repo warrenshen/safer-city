@@ -30,66 +30,69 @@ class Mapper {
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     // Bias the SearchBox results towards current map's viewport.
-    map.addListener('bounds_changed', () => {
-      searchBox.setBounds(map.getBounds());
-    });
+    map.addListener(
+      'bounds_changed',
+      () => searchBox.setBounds(map.getBounds()),
+    );
 
     var markers = [];
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
-    searchBox.addListener('places_changed', () => {
-      var places = searchBox.getPlaces();
-      var lat = places[0].geometry.location.lat();
-      var lng = places[0].geometry.location.lng();
-      var miles = 20;
+    searchBox.addListener(
+      'places_changed',
+      () => {
+        var places = searchBox.getPlaces();
+        var lat = places[0].geometry.location.lat();
+        var lng = places[0].geometry.location.lng();
+        var limit = 50;
 
-      // TODO: get stats and markers and set markers
-      if (this.mode === 'search') {
-        var markerresolve = (response) => {
-          var resolve = (response) => {
+        if (this.mode === 'search') {
+          var aResolve = (aResponse) => {
 
-            // Clear out the old markers.
-            markers.forEach((marker) => marker.setMap(null));
-            markers = [];
-            var arrayLength = response.reports.length;
-            for (var i = 0; i < arrayLength; i++) {
-              var markerLat = response.reports[i].latitude
-              var markerLng = response.reports[i].longitude
-              var markerTitle = response.reports[i].title
-              var markerDesc = response.reports[i].description
+            var bResolve = (bResponse) => {
 
-              var marker = new google.maps.Marker({
-                position: {lat: markerLat, lng: markerLng},
-                map: map,
-                title: markerTitle
-              });
+              // Clear out the old markers.
+              markers.forEach((marker) => marker.setMap(null));
+              markers = [];
+              var arrayLength = aResponse.reports.length;
+              for (var i = 0; i < arrayLength; i++) {
+                var markerLat = aResponse.reports[i].latitude;
+                var markerLng = aResponse.reports[i].longitude;
+                var markerTitle = aResponse.reports[i].title;
+                var markerDesc = aResponse.reports[i].description;
 
-              marker.addListener('click', function() {
-                var infowindow = new google.maps.InfoWindow({
-                  content: markerDesc
+                var marker = new google.maps.Marker({
+                  map: map,
+                  position: { lat: markerLat, lng: markerLng },
+                  title: markerTitle,
                 });
-                infowindow.open(map, marker);
-              });
-            }
-          };
+
+                marker.addListener(
+                  'click',
+                  () => {
+                    var infowindow = new google.maps.InfoWindow({
+                      content: markerDesc,
+                    });
+                    infowindow.open(map, marker);
+                  },
+                );
+              }
+              this.listener(aResponse.reports, bResponse.categories);
+            };
+
+            Requester.get(
+              ApiConstants.categories.search(lat, lng),
+              bResolve,
+            );
+          }
 
           Requester.get(
-            ApiConstants.reports.search(lat, lng),
-            markerresolve,
+            ApiConstants.reports.search(lat, lng, limit),
+            aResolve,
           );
-
-          var statsresolve = (response) => {
-            this.listener(response.categories);
-          };
-
-          Requester.get(
-            ApiConstants.categories.search(lat, lng),
-            statsresolve,
-          );
+        } else if (this.mode === 'form') {
+          this.listener(lat, lng);
         }
-      } else if (this.mode === 'form') {
-        this.listener(lat, lng);
-      }
 
       if (places.length == 0) {
         return;

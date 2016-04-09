@@ -3,8 +3,8 @@ class ApiConstants {
   get reports() {
     return {
       create: '/reports',
-      search: (lat, lng) => {
-        return `/reports?lat=${lat}&lng=${lng}`;
+      search: (lat, lng, limit) => {
+        return `/reports?lat=${lat}&lng=${lng}&limit=${limit}`;
       },
     };
   }
