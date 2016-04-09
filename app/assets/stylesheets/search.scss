@@ -38,6 +38,7 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
   .data-container {
     bottom: 0;
     height: calc(100% - 78px);
+    overflow-x: hidden;
     padding: 30px;
     position: absolute;
     right: 0;
@@ -84,6 +85,15 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
     margin-top: 12px;
   }
 
+  .chart {
+    margin: 20px auto;
+
+    label {
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+  }
+
   .search-reports-container {
     @include prefixer(column-count, 2);
     @include prefixer(column-gap, 20px);
@@ -99,10 +109,6 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
     padding: 20px;
     transition: 100ms;
     width: 100%;
-
-    &:hover {
-      box-shadow: 0 0 10px $d-gray-10;
-    }
 
     .severity {
       font-size: 13px;

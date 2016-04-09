@@ -28,9 +28,9 @@ class SearchGraphs extends React.Component {
       .text("")
     // PIE CHART
 
-    var w = 300,                        //width
-    h = 300,                            //height
-    r = 100,                            //radius
+    var w = 150,                        //width
+    h = 150,                            //height
+    r = 75,                             //radius
     color = d3.scale.category20c();     //builtin range of colors
     data = [{"label":"one", "value":20},
             {"label":"two", "value":50},
@@ -67,7 +67,7 @@ class SearchGraphs extends React.Component {
     d3.select("#pie-chart-label")
       .attr("width", 50)
       .attr("height", 20)
-      .text("Pie chart label")
+      .text("Crime Categories")
     // BAR GRAPH
     var data = {
     "regions": ["Federal", "Tigray", "Afar", "Amhara", "Oromia", "Gambella", "Addis Ababa", "Dire Dawa", "Harar", "Benishangul-Gumuz", "Somali", "SNNPR "],
@@ -80,8 +80,8 @@ class SearchGraphs extends React.Component {
             "bottom": 30,
             "left": 50
         },
-        width = 700,
-        height = 300;
+        width = 400,
+        height = 150;
 
     var x = d3.scale.ordinal()
         .domain(data.regions.map(function(d) {
@@ -135,7 +135,7 @@ class SearchGraphs extends React.Component {
     d3.select("#bar-graph-label")
       .attr("width", 50)
       .attr("height", 20)
-      .text("Bar graph label")
+      .text("Time distribution")
   }
 
 
@@ -176,10 +176,14 @@ class SearchGraphs extends React.Component {
           </div>
         </div>
         <p id="no-content-label"></p>
-        <p id="pie-chart-label"></p>
-        <div id="d3-pie-chart"></div>
-        <p id="bar-graph-label"></p>
-        <div id="d3-bar-graph"></div>
+        <div className="chart pie-chart">
+          <label id="pie-chart-label"></label>
+          <div id="d3-pie-chart"></div>
+        </div>
+        <div className="chart bar-graph">
+          <label id="bar-graph-label"></label>
+          <div id="d3-bar-graph"></div>
+        </div>
       </div>
     );
   }
