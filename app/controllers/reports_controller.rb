@@ -60,11 +60,13 @@ class ReportsController < ApplicationController
     end
   end
 
-  def hourly_stats
+  def time_stats
     get_reports
-    stats = Hash.new(0)
+    stats = { hourly: Hash.new(0), monthly: Hash.new(0), yearly: Hash.new(0) }
     @reports.each do |report|
-      stats[report.datetime.hour] += 1
+      stats[:hourly][report.datetime.hour] += 1
+      stats[:monthly][report.datetime.month] += 1
+      stats[:yearly][report.datetime.year] += 1
     end
     render json: stats
   end
