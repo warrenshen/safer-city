@@ -1,4 +1,4 @@
-class NotifyPage extends React.Component {
+class SubscribePage extends React.Component {
 
   // --------------------------------------------------
   // Setup
@@ -12,6 +12,22 @@ class NotifyPage extends React.Component {
   }
 
   // --------------------------------------------------
+  // Helpers
+  // --------------------------------------------------
+  submitForm() {
+    var attributes = {
+      email: this.state.email,
+      phone_number: this.state.phone_number,
+    };
+    var params = { subscription: attributes };
+    Requester.post(
+      ApiConstants.subscriptions.create,
+      params,
+      resolve,
+    );
+  }
+
+  // --------------------------------------------------
   // Render
   // --------------------------------------------------
   render() {
@@ -19,7 +35,7 @@ class NotifyPage extends React.Component {
       <div className="notify-page">
         <Header />
         <div className="container form-container">
-          <h1 className="page-title">Notifications</h1>
+          <h1 className="page-title">Subscribe</h1>
           <p className="description">Receive a notification whenever there is a report near your location.</p>
           <form className="notify-form">
             <FormQuestion
@@ -32,7 +48,11 @@ class NotifyPage extends React.Component {
               label="Phone Number"
               value={this.state.phone_number}
               type="tel" />
-            <input className="btn--solid submit-btn" type="submit" value="Submit"/>
+            <Clickable
+              action={() => this.submitForm()}
+              className="btn--solid submit-btn"
+              content="Submit"
+              type="none" />
           </form>
         </div>
       </div>

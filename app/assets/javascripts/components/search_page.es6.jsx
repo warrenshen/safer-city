@@ -26,7 +26,6 @@ class SearchPage extends React.Component {
   // Render
   // --------------------------------------------------
   render() {
-    console.log(this.state);
     return (
       <div className="search-page">
         <Header />

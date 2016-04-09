@@ -3,8 +3,9 @@ class RouteConstants {
   get pages() {
     return {
       home: '/',
+      report: '/report',
       search: '/search',
-      notify: '/notify',
+      subscribe: '/subscribe',
     };
   }
 }
