@@ -29,7 +29,7 @@ class Header extends React.Component {
               <Clickable
                 className="btn btn--solid"
                 content="New Report"
-                route={RouteConstants.pages.report}
+                route={RouteConstants.pages.submit}
                 type="none" />
             </li>
           </ul>

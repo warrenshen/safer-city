@@ -87,7 +87,7 @@ class HomePage extends React.Component {
                 <Clickable
                   className="btn btn--solid"
                   content="New Report"
-                  route={RouteConstants.pages.report}
+                  route={RouteConstants.pages.submit}
                   type="none" />
               </li>
             </ul>
@@ -122,6 +122,7 @@ class HomePage extends React.Component {
             <ReportsGrid reports={this.props.reports} />
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
