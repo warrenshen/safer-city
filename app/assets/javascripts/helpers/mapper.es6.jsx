@@ -146,27 +146,48 @@ class Mapper {
 
         // TODO: get stats and markers and set markers
         if (this.mode === 'search') {
-          var resolve = (response) => {
-            console.log(response);
+          var aResolve = (aResponse) => {
 
-            // Clear out the old markers.
-            markers.forEach((marker) => marker.setMap(null));
-            markers = [];
-            var statsDict = []
-            var markerArray = [];
-            var arrayLength = markerArray.length;
-            for (var i = 0; i < arrayLength; i++) {
-              var marker = new google.maps.Marker({
-                position: {lat: lat, lng: lng},
-                map: map,
-                title: 'Hello World!'
-              });
-            }
-            this.listener(statsDict);
-          };
+            var bResolve = (bResponse) => {
+
+              // Clear out the old markers.
+              markers.forEach((marker) => marker.setMap(null));
+              markers = [];
+              var arrayLength = aResponse.reports.length;
+              for (var i = 0; i < arrayLength; i++) {
+                var markerLat = aResponse.reports[i].latitude;
+                var markerLng = aResponse.reports[i].longitude;
+                var markerTitle = aResponse.reports[i].title;
+                var markerDesc = aResponse.reports[i].description;
+
+                var marker = new google.maps.Marker({
+                  map: map,
+                  position: { lat: markerLat, lng: markerLng },
+                  title: markerTitle,
+                });
+
+                marker.addListener(
+                  'click',
+                  () => {
+                    var infowindow = new google.maps.InfoWindow({
+                      content: markerDesc,
+                    });
+                    infowindow.open(map, marker);
+                  },
+                );
+              }
+              this.listener(aResponse.reports, bResponse.categories);
+            };
+
+            Requester.get(
+              ApiConstants.categories.search(lat, lng),
+              bResolve,
+            );
+          }
+
           Requester.get(
-            ApiConstants.reports.search(lat, lng, miles),
-            resolve,
+            ApiConstants.reports.search(lat, lng, limit),
+            aResolve,
           );
         } else if (this.mode === 'form') {
           this.listener(lat, lng);

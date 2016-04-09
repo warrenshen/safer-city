@@ -3,11 +3,17 @@ class RouteConstants {
   get pages() {
     return {
       home: '/',
-      report: '/report',
-      reportSuccess: '/report/success',
       search: '/search',
+      submit: '/submit',
+      submitSuccess: '/submit/success',
       subscribe: '/subscribe',
       subscribeSuccess: '/subscribe/success',
+    };
+  }
+
+  get reports() {
+    return {
+      show: (id) => `/reports/${id}`,
     };
   }
 }

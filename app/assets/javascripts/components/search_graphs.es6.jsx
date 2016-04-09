@@ -12,6 +12,7 @@ class SearchGraphs extends React.Component {
   // --------------------------------------------------
   static get propTypes() {
     return {
+      categories: React.PropTypes.array.isRequired,
       reports: React.PropTypes.array.isRequired,
     };
   }
@@ -32,9 +33,14 @@ class SearchGraphs extends React.Component {
     h = 150,                            //height
     r = 75,                             //radius
     color = d3.scale.category20c();     //builtin range of colors
-    data = [{"label":"one", "value":20},
-            {"label":"two", "value":50},
-            {"label":"three", "value":30}];
+
+    var data = []
+    var cat_array_length = this.props.categories.length;
+    for (var i = 0; i < cat_array_length; i++) {
+      var element = this.props.categories[i]
+      data.push({"label": element.name, "value": element.reports_count});
+    }
+
     var vis = d3.select("#d3-pie-chart")
         .append("svg:svg")              //create the SVG element inside the <body>
         .data([data])                   //associate our data with the document
