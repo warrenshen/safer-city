@@ -1,13 +1,33 @@
 class ReportPage extends React.Component {
 
   // --------------------------------------------------
+  // Setup
+  // --------------------------------------------------
+  constructor(props) {
+    super(props);
+    this.state = { report: {} };
+  }
+
+  // --------------------------------------------------
   // Props
   // --------------------------------------------------
   static get propTypes() {
     return {
-      report: React.PropTypes.object.isRequired,
+      id: React.PropTypes.number.isRequired,
     };
   }
+
+  // --------------------------------------------------
+  // Lifecycle
+  // --------------------------------------------------
+  componentDidMount() {
+    var resolve = (response) => this.setState({ report: response.report });
+    Requester.get(
+      ApiConstants.reports.show(this.props.id),
+      resolve,
+    );
+  }
+
 
   // --------------------------------------------------
   // Render
@@ -16,7 +36,7 @@ class ReportPage extends React.Component {
     return (
       <div className="report-page">
         <Header />
-        <p>{this.props.report.description}</p>
+        <p>{this.state.report.description}</p>
         <Footer />
       </div>
     );
