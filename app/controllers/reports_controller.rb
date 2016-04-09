@@ -29,6 +29,11 @@
 class ReportsController < ApplicationController
   protect_from_forgery except: :create
 
+  def recent
+    @reports = Report.order(created_at DESC).first(10)
+    render json: @reports, each_serializer: ReportsSerializer
+  end
+
   def index
     get_reports
     render json: @reports, each_serializer: ReportsSerializer
