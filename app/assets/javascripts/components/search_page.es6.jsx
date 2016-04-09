@@ -6,17 +6,16 @@ class SearchPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      pie_data: [],
-      bar_data: [],
+      reports: [],
     };
   }
 
   componentDidMount() {
-    Mapper.attachListener((params) => this.syncAutocomplete(lat, lng));
+    Mapper.attachListener((lat, lng) => this.syncAutocomplete(lat, lng));
   }
 
   syncAutocomplete(lat, lng) {
-    var resolve = (response) => console.log(response);
+    var resolve = (response) => this.setState({ reports: response.reports });
     Requester.get(
       ApiConstants.reports.search(lat, lng),
       resolve,
