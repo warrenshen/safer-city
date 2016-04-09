@@ -5,11 +5,11 @@ class SearchMap extends React.Component {
   // --------------------------------------------------
   render() {
     return (
-      <div>
-        <input
-          className="controls"
-          id="pac-input"
-          type="text" />
+      <div className="map-container">
+        <input id="pac-input"
+               className="controls"
+               type="text"
+               placeholder="Search Box" />
       	<div id="map"></div>
       </div>
     );

@@ -1,0 +1,33 @@
+.search-page {
+  .navbar {
+    border-bottom: 1px solid $l-gray;
+    margin-bottom: 0;
+
+    .container {
+      border-bottom: none;
+    }
+  }
+  @include clearAfter;
+  height: 100vh;
+
+  .page-container {
+    height: calc(100% - 78px);
+  }
+
+  .map-container {
+    float: left;
+    height: 100%;
+    width: 50%;
+  }
+
+  #map {
+    height: 100%;
+  }
+
+  .graphs-container {
+    float: left;
+    height: 100%;
+    padding: 30px;
+    width: 50%;
+  }
+}

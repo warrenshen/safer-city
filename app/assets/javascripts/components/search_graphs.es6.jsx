@@ -70,7 +70,7 @@ class SearchGraphs extends React.Component {
   render() {
     // TODO(Sameera): Place any d3 component inside the divs below.
     return (
-      <div>
+      <div className="graphs-container">
         <div id="d3-pie-chart"></div>
         <div id="d3-bar-graph"></div>
       </div>
