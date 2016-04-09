@@ -12,7 +12,10 @@ class ReportPage extends React.Component {
       time: '',
       category: '',
       lat: '',
-      lng: ''
+      lng: '',
+      name: '',
+      phone_number: '',
+      email: '',
     };
   }
 
@@ -27,8 +30,17 @@ class ReportPage extends React.Component {
       time: this.state.time,
       category: this.state.category,
       lat: this.state.lat,
-      lng: this.state.lng
+      lng: this.state.lng,
     };
+    if (this.state.name != '') {
+      attributes[name] = this.state.name
+    }
+    if (this.state.phone_number != '') {
+      attributes[phone_number] = this.state.phone_number
+    }
+    if (this.state.email != '') {
+      attributes[email] = this.state.email
+    }
     var params = { subscription: attributes };
     Requester.post(
       ApiConstants.submissions.create,
@@ -81,6 +93,22 @@ class ReportPage extends React.Component {
                      placeholder="Search Box" />
               <div id="map" style={{height: "100"}}></div>
             </div>
+            <p>Optional</p>
+            <FormQuestion
+              action={(event) => this.setState({ title: event.target.value })}
+              label="Full Name"
+              value={this.state.title}
+              type="text" />
+            <FormQuestion
+              action={(event) => this.setState({ phone_number: event.target.value })}
+              label="Phone number"
+              value={this.state.phone_number}
+              type="tel" />
+            <FormQuestion
+              action={(event) => this.setState({ email: event.target.value })}
+              label="Email"
+              value={this.state.email}
+              type="email" />
             <Clickable
               action={() => this.submitForm()}
               className="btn--solid submit-btn"
