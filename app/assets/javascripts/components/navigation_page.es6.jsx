@@ -142,6 +142,7 @@ class NavigationPage extends React.Component {
         title: 'Hello World!'
       });
       this.srcMarker = marker
+      this.srcMarker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
     } else if (type === 'dst') {
       this.setState({ dstLat: latlngOrArray.lat, dstLng: latlngOrArray.lng, map: map });
       if (this.dstMarker != null) {
@@ -152,6 +153,7 @@ class NavigationPage extends React.Component {
         map: map,
         title: 'Hello World!'
       });
+      this.dstMarker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
     } else if (type == 'reports') {
       this.setState({ reports: latlngOrArray });
     }
