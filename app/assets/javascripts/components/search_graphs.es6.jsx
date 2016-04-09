@@ -1,4 +1,3 @@
-
 class SearchGraphs extends React.Component {
 
   // --------------------------------------------------

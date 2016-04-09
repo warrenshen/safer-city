@@ -1,9 +1,17 @@
 .search-page {
+  .navbar {
+    border-bottom: 1px solid $l-gray;
+    margin-bottom: 0;
+
+    .container {
+      border-bottom: none;
+    }
+  }
   @include clearAfter;
   height: 100vh;
 
   .page-container {
-    height: calc(100% - 48px);
+    height: calc(100% - 78px);
   }
 
   .map-container {
