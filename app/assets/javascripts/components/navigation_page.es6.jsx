@@ -10,6 +10,7 @@ class NavigationPage extends React.Component {
         dstLng: '',
         dstMarker: '',
         reports: [],
+        map: ''
       };
   }
 
@@ -20,9 +21,37 @@ class NavigationPage extends React.Component {
     );
   }
 
+  componentDidUpdate() {
+    if (this.state.srcLat != '' && this.state.srcLng != '' && this.state.dstLat != '' && this.state.dstLng != '') {
+      var directionsService = new google.maps.DirectionsService()
+      var mainMap = this.state.map
+
+      var start = new google.maps.LatLng(this.state.srcLat, this.state.srcLng)
+      var end = new google.maps.LatLng(this.state.dstLat, this.state.dstLng)
+      var request = {
+        origin:start,
+        destination:end,
+        travelMode: google.maps.DirectionsTravelMode.WALKING,
+        provideRouteAlternatives: true,
+      };
+      directionsService.route(request, function(result, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          console.log(result)
+          for (var i = 0, len = result.routes.length; i < len; i++) {
+                new google.maps.DirectionsRenderer({
+                    map: mainMap,
+                    directions: result,
+                    routeIndex: i
+                });
+            }
+        }
+      });
+    }
+  }
+
   syncAutocomplete(latlngOrArray, type, map) {
     if (type === 'src') {
-      this.setState({ srcLat: latlngOrArray.lat, srcLng: latlngOrArray.lng });
+      this.setState({ srcLat: latlngOrArray.lat, srcLng: latlngOrArray.lng, map: map });
       if (this.srcMarker != null) {
         this.srcMarker.setMap(null)
       }
@@ -33,7 +62,7 @@ class NavigationPage extends React.Component {
       });
       this.srcMarker = marker
     } else if (type === 'dst') {
-      this.setState({ dstLat: latlngOrArray.lat, dstLng: latlngOrArray.lng });
+      this.setState({ dstLat: latlngOrArray.lat, dstLng: latlngOrArray.lng, map: map });
       if (this.dstMarker != null) {
         this.dstMarker.setMap(null)
       }
