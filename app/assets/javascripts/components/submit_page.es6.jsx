@@ -110,6 +110,7 @@ class SubmitPage extends React.Component {
               type="none" />
           </form>
         </div>
+        <Footer />
       </div>
     );
   }

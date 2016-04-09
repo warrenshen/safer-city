@@ -82,6 +82,7 @@ class SubscribePage extends React.Component {
               type="none" />
           </form>
         </div>
+        <Footer />
       </div>
     );
   }
