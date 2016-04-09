@@ -1,6 +1,10 @@
 $color-list: $red, $orange, $yellow;
 $severity-list: 'SEVERE', 'MODERATE', 'MILD';
 
+* {
+  box-sizing: border-box;
+}
+
 .home-page {
   .navbar {
     position: fixed;
@@ -109,3 +113,9 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
     }
   }
 }
+
+@media all and (max-width: 670px) {
+      .reports-grid {
+        -webkit-column-count: 1 !important;
+      }
+    }
