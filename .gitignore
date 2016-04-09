@@ -11,7 +11,7 @@
 config/application.yml
 
 # Ignore any top-level xlsx files.
-config/*.xlsx
+*.xlsx
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
