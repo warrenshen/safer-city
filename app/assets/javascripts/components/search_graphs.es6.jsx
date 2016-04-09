@@ -37,10 +37,28 @@ class SearchGraphs extends React.Component {
     color = d3.scale.category20c();     //builtin range of colors
 
     var data = []
-    var cat_array_length = this.props.categories.length;
-    for (var i = 0; i < cat_array_length; i++) {
-      var element = this.props.categories[i]
-      data.push({"label": element.name, "value": element.reports_count});
+    if (this.state.time_frame == 'month') {
+      var cat_array_length = this.props.categories.length;
+      for (var i = 0; i < cat_array_length; i++) {
+        if (i % 2 == 0) {
+          var element = this.props.categories[i]
+          data.push({"label": element.name, "value": element.reports_count});
+        }
+      }
+    } else if (this.state.time_frame == 'year') {
+      var cat_array_length = this.props.categories.length;
+      for (var i = 0; i < cat_array_length; i++) {
+        if (i % 3 == 0) {
+          var element = this.props.categories[i]
+          data.push({"label": element.name, "value": element.reports_count});
+        }
+      }
+    } else {
+      var cat_array_length = this.props.categories.length;
+      for (var i = 0; i < cat_array_length; i++) {
+        var element = this.props.categories[i]
+        data.push({"label": element.name, "value": element.reports_count});
+      }
     }
 
     var vis = d3.select("#d3-pie-chart")
@@ -71,7 +89,7 @@ class SearchGraphs extends React.Component {
                   d3.select(this).select("path").transition()
                     .duration(200)
                     .attr("d", arcOver)
-                  textBottom.text(d3.select(this).datum().data.value.toFixed(0) + "%");
+                  textBottom.text((d3.select(this).datum().data.value * 100.0 / totalSum).toFixed(0) + "%");
                 })
                 .on("mouseout", function(d) {
                     d3.select(this).select("path").transition()
@@ -118,10 +136,35 @@ class SearchGraphs extends React.Component {
       .attr("height", 20)
       .text("Crime Categories")
     // BAR GRAPH
-    var data = {
-    "regions": ["Federal", "Tigray", "Afar", "Amhara", "Oromia", "Gambella", "Addis Ababa", "Dire Dawa", "Harar", "Benishangul-Gumuz", "Somali", "SNNPR "],
-    "institutions": [0, 0, 34, 421, 738, 0, 218, 22, 22, 109, 0, 456]
+    var data = {"regions": [], "institutions": []}
+
+    if (this.state.time_frame == 'month') {
+      var dict = this.props.stats.monthly
+      for (var key in dict) {
+        if (dict.hasOwnProperty(key)) {
+          data.regions.push(key)
+          data.institutions.push(dict[key])
+        }
+      }
+    } else if (this.state.time_frame == 'year') {
+      var dict = this.props.stats.yearly
+      for (var key in dict) {
+        if (dict.hasOwnProperty(key)) {
+          data.regions.push(key)
+          data.institutions.push(dict[key])
+        }
+      }
+    } else {
+      for (var key in this.props.stats.hourly) {
+        var dict = this.props.stats.hourly
+        if (dict.hasOwnProperty(key)) {
+          data.regions.push(key)
+          data.institutions.push(dict[key])
+        }
+      }
     }
+
+
 
     var margin = {
             "top": 10,
