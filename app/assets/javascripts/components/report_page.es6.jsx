@@ -52,7 +52,6 @@ class ReportPage extends React.Component {
     this.setState({ lat: lat, lng: lng });
   }
 
-
   // --------------------------------------------------
   // Render
   // --------------------------------------------------
@@ -61,7 +60,7 @@ class ReportPage extends React.Component {
       <div className="report-page">
         <Header />
         <div className="container form-container">
-          <h1 className="page-title">Submit a Report</h1>
+          <h1 className="page-title">Submit a report</h1>
           <p className="description">Help spread awareness and keep your neighborhood safe.</p>
           <form className="report-form">
             <label className="form-label">Location</label>

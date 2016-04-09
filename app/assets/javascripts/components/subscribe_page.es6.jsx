@@ -7,8 +7,8 @@ class SubscribePage extends React.Component {
     super();
     this.state = {
       email: '',
-      lat: null,
-      lng: null,
+      latitude: null,
+      longitude: null,
       phone_number: '',
     };
   }
@@ -29,8 +29,8 @@ class SubscribePage extends React.Component {
   submitForm() {
     var attributes = {
       email: this.state.email,
-      lat: this.state.lat,
-      lng: this.state.lng,
+      latitude: this.state.lat,
+      longitude: this.state.lng,
       phone_number: this.state.phone_number,
     };
     var params = { subscription: attributes };
@@ -57,6 +57,7 @@ class SubscribePage extends React.Component {
           <h1 className="page-title">Subscribe</h1>
           <p className="description">Receive a notification whenever there is a report near your location.</p>
           <form className="notify-form">
+            <label className="form-label">Location</label>
             <div className="map-container">
               <input
                 className="controls"
