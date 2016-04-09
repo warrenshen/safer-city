@@ -87,3 +87,37 @@ html, body {
 #target {
     width: 345px;
 }
+
+// d3 graph stuff
+.slice text {
+	font-size: 16pt;
+	font-family: Arial;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.time-button {
+	height: 20px;
+	width: 20px;
+}
