@@ -9,7 +9,8 @@ class Header extends React.Component {
         <Clickable
           content="Search"
           className="header-jewel"
-          route={RouteConstants.pages.search} />
+          route={RouteConstants.pages.search}
+          type={'h5'} />
       </div>
     );
   }
