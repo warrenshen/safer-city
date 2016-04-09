@@ -3,56 +3,7 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
 
 .home-page {
   .navbar {
-    background: #FCFCFC;
     position: fixed;
-    width: 100%;
-
-    .container {
-      border-bottom: 1px solid $l-gray;
-      padding-bottom: 20px;
-      padding-top: 20px;
-    }
-  }
-
-  .nav-logo-container {
-    float: left;
-    margin-right: 50px;
-    width: 90px;
-
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
-  }
-
-  .nav-search-container {
-    float: left;
-    width: calc(100% - 800px);
-
-    input {
-      width: 100%;
-    }
-  }
-
-  .nav-links {
-    float: right;
-
-    .link {
-      color: $red;
-      display: inline-block;
-      margin: 0 15px;
-      text-decoration: none;
-      transition: 100ms;
-
-      a {
-        text-decoration: none;
-      }
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
   }
 
   .nav-hide {

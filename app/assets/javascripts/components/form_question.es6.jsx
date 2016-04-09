@@ -6,9 +6,10 @@ class FormQuestion extends React.Component {
   static get propTypes() {
     return {
       action: React.PropTypes.func.isRequired,
-      error: React.PropTypes.string,
-      label: React.PropTypes.string.isRequired,
-      value: React.PropTypes.string.isRequired,
+      error:  React.PropTypes.string,
+      label:  React.PropTypes.string.isRequired,
+      value:  React.PropTypes.string.isRequired,
+      type:   React.PropTypes.string.isRequired,
     };
   }
 
@@ -43,10 +44,11 @@ class FormQuestion extends React.Component {
   render() {
     return (
       <div className="form-question">
-        <h6>{this.props.label}</h6>
+        <label>{this.props.label}</label>
         <input
           className="form-input"
-          ref="input" />
+          ref="input"
+          type={`${this.props.type}`} />
         {this.renderError()}
       </div>
     );

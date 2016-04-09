@@ -30,15 +30,74 @@ input {
   border: 1px solid $red;
   border-radius: 3px;
   color: $red;
+  cursor: pointer;
   display: inline-block;
   font-size: 15px;
   font-weight: 600;
   padding: 10px 13px;
   text-decoration: none;
+  transition: 100ms;
 }
 
 .btn--solid {
   @extend .btn;
-  background: $red;
+  background: $red-90;
   color: white;
+
+  &:hover {
+    background: $red;
+  }
+}
+
+.navbar {
+  background: #FCFCFC;
+  margin-bottom: 40px;
+  width: 100%;
+
+  .container {
+    border-bottom: 1px solid $l-gray;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+}
+
+.nav-logo-container {
+  float: left;
+  margin-right: 50px;
+  width: 90px;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.nav-search-container {
+  float: left;
+  width: calc(100% - 800px);
+
+  input {
+    width: 100%;
+  }
+}
+
+.nav-links {
+  float: right;
+
+  .link {
+    color: $red;
+    display: inline-block;
+    margin: 0 15px;
+    text-decoration: none;
+    transition: 100ms;
+
+    a {
+      text-decoration: none;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
