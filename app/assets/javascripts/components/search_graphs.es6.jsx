@@ -35,6 +35,7 @@ class SearchGraphs extends React.Component {
     r = 75,                             //radius
     inner = 40,
     color = d3.scale.category20c();     //builtin range of colors
+    var totalSum = 0
 
     var data = []
     if (this.state.time_frame == 'month') {
@@ -43,6 +44,7 @@ class SearchGraphs extends React.Component {
         if (i % 2 == 0) {
           var element = this.props.categories[i]
           data.push({"label": element.name, "value": element.reports_count});
+          totalSum += element.reports_count
         }
       }
     } else if (this.state.time_frame == 'year') {
@@ -51,6 +53,7 @@ class SearchGraphs extends React.Component {
         if (i % 3 == 0) {
           var element = this.props.categories[i]
           data.push({"label": element.name, "value": element.reports_count});
+          totalSum += element.reports_count
         }
       }
     } else {
@@ -58,6 +61,7 @@ class SearchGraphs extends React.Component {
       for (var i = 0; i < cat_array_length; i++) {
         var element = this.props.categories[i]
         data.push({"label": element.name, "value": element.reports_count});
+        totalSum += element.reports_count
       }
     }
 

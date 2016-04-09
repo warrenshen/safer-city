@@ -85,7 +85,7 @@ class HomePage extends React.Component {
               </li>
               <li className="link">
                 <Clickable
-                  content="Route me"
+                  content="Route Me"
                   route={RouteConstants.pages.navigation}
                   type="none" />
               </li>
@@ -109,7 +109,7 @@ class HomePage extends React.Component {
           <div className="home-stats-container">
             <h1 className="stats-title">Sexual harassment is serious</h1>
             <div className="row">
-              <div className="col-md-4 col-sm-4">
+              <div className="col-md-4 col-sm-4 col-xs-6">
                 <h2 className="number">{Math.floor(this.state.secondCount)}
                   <div className="bar-chart-background">
                     <div className="bar-chart" style={{height: 55 * this.state.secondPercentage + "px"}}></div>
@@ -117,11 +117,11 @@ class HomePage extends React.Component {
                 </h2>
                 <p className="stat-label">cases since you arrived on this page</p>
               </div>
-              <div className="col-md-4 col-sm-4">
+              <div className="col-md-4 col-sm-4 col-xs-6">
                 <h2 className="number">848</h2>
                 <p className="stat-label">reports of sexual abuse per day</p>
               </div>
-              <div className="col-md-4 col-sm-4">
+              <div className="col-md-4 col-sm-4 col-xs-12">
                 <h2 className="number stat-arrow">50%</h2>
                 <p className="stat-label">increase in cases since 2013</p>
               </div>

@@ -27,7 +27,7 @@ class Header extends React.Component {
             </li>
             <li className="link">
               <Clickable
-                content="Route me"
+                content="Route Me"
                 route={RouteConstants.pages.navigation}
                 type="none" />
             </li>

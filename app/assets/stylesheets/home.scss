@@ -140,6 +140,14 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
       max-width: 450px;
     }
 
+    .stat-arrow {
+      margin-top: 40px;
+
+      &:after {
+        right: 110px;
+      }
+    }
+
     .reports-grid {
       @include prefixer(column-count, 1);
       @include prefixer(column-gap, 0);
