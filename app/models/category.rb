@@ -18,4 +18,8 @@ class Category < ActiveRecord::Base
     'Poor / No Street Lighting', 'Chain Snatching', 'North East India Report', 'Others', 'VERBAL ABUSE',
     'NON-VERBAL ABUSE', 'PHYSICAL ABUSE', 'SERIOUS PHYSICAL ABUSE', 'OTHER ABUSE']
   end
+
+  def reports_count
+    reports.count
+  end
 end

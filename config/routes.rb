@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   get "subscribe", to: "pages#subscribe"
   resources :reports, only: [:index, :create]
   resources :subscriptions, only: [:create]
+  resources :categories, only: [:index]
 
 end

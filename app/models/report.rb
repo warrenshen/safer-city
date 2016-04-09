@@ -40,7 +40,7 @@ class Report < ActiveRecord::Base
   before_create :set_incident_id
 
   def category_names
-    categories.pluck(:name).map(&:titlecase)
+    categories.map(&:name).map(&:titlecase)
   end
 
   def set_incident_id
