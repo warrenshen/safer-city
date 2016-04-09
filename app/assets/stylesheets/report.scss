@@ -95,6 +95,24 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
     width: 100%;
   }
 
+  .category-container {
+    display: flex;
+    flex-flow: row wrap;
+
+    .checkbox-container {
+      width: 50%;
+
+      input[type="checkbox"] {
+        float: left;
+        margin-right: 5px;
+      }
+
+      label {
+        display: block;
+      }
+    }
+  }
+
   #map {
     height: 300px !important;
   }
