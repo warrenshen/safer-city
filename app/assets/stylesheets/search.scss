@@ -145,4 +145,38 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
       }
     }
   }
+
+  @media (max-width: 1000px) {
+    .map-container {
+      width: 45%;
+    }
+    .data-container {
+      width: 55%;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .map-container {
+      height: 300px;
+      position: relative;
+      width: 100%;
+    }
+
+    .data-container {
+      height: auto;
+      position: relative;
+      width: 100%;
+    }
+
+    .gmnoprint {
+      display: none;
+    }
+
+    #pac-input {
+      margin-left: 0;
+      left: 50% !important ;
+      top: 10px !important;
+      @include transform(translateX(-50%));
+    }
+  }
 }

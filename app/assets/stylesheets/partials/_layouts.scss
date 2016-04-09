@@ -145,3 +145,9 @@ textarea {
   float: right;
   margin-top: 15px;
 }
+
+@media (max-width: 600px) {
+  .nav-hide {
+    display: none;
+  }
+}
