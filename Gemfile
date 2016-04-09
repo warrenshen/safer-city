@@ -8,6 +8,7 @@ gem 'active_model_serializers', '0.9.4'
 gem 'figaro', '1.1.1'
 gem 'pg', '0.18.4'
 gem 'react-rails', '1.5.0'
+gem 'roo'
 
 # Client
 gem 'font-awesome-rails'
