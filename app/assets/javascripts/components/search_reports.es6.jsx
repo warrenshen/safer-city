@@ -30,7 +30,7 @@ class SearchReports extends React.Component {
 
   render() {
     return (
-      <div className="graphs-container">
+      <div className="search-reports-container">
         {this.renderReports()}
       </div>
     );
