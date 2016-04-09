@@ -7,6 +7,10 @@ class SearchPage extends React.Component {
     return (
       <div className="search-page">
         <Header />
+        <div className="search-grid">
+          <SearchMap />
+          <SearchGraphs />
+        </div>
       </div>
     );
   }
