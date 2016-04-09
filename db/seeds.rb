@@ -1,7 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+category_names = ['Catcalls/Whistles', 'Commenting' 'Sexual Invites', 'Ogling/Facial Expressions/Staring',
+'Taking Pictures', 'Indecent Exposure', 'Touching/Groping', 'Stalking', 'Rape / Sexual Assault',
+'Poor / No Street Lighting', 'Chain Snatching', 'North East India Report', 'Others', 'VERBAL ABUSE',
+'NON-VERBAL ABUSE', 'PHYSICAL ABUSE', 'SERIOUS PHYSICAL ABUSE', 'OTHER ABUSE']
+
+category_names.each do |name|
+  Category.find_or_create_by(name: name.downcase)
+end

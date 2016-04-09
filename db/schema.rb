@@ -11,9 +11,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160409040324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "report_categories", force: :cascade do |t|
+    t.integer  "report_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "report_categories", ["category_id"], name: "index_report_categories_on_category_id", using: :btree
+  add_index "report_categories", ["report_id"], name: "index_report_categories_on_report_id", using: :btree
+
+  create_table "reports", force: :cascade do |t|
+    t.integer  "incident_id"
+    t.date     "date"
+    t.time     "time"
+    t.text     "description"
+    t.string   "location"
+    t.integer  "country_code"
+    t.integer  "city_code"
+    t.integer  "area_code"
+    t.integer  "locatlity"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "confirm"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "more_info"
+    t.string   "email"
+    t.boolean  "approved"
+    t.boolean  "verified"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_foreign_key "report_categories", "categories"
+  add_foreign_key "report_categories", "reports"
 end
