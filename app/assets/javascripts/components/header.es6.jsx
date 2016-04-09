@@ -5,12 +5,20 @@ class Header extends React.Component {
   // --------------------------------------------------
   render() {
     return (
-      <div className="header">
-        <Clickable
-          content="Search"
-          className="header-jewel"
-          route={RouteConstants.pages.search}
-          type={'h5'} />
+      <div className="navbar">
+        <div className="container">
+          <a href={RouteConstants.pages.home}>
+            <div className="nav-logo-container">
+              <img src="/assets/logo.jpg"/>
+            </div>
+          </a>
+          <div className="nav-search-container"><SearchBar/></div>
+          <ul className="nav-links">
+            <li className="link"><a href={RouteConstants.pages.search}>Map</a></li>
+            <li className="link"><a href={RouteConstants.pages.notify}>Notifications</a></li>
+            <li className="link"><a href="" className="btn btn--solid">New Report</a></li>
+          </ul>
+        </div>
       </div>
     );
   }

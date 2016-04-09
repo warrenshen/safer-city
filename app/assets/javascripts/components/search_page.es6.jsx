@@ -6,9 +6,20 @@ class SearchPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      pie_data: [],
-      bar_data: [],
+      reports: [],
     };
+  }
+
+  componentDidMount() {
+    Mapper.attachListener((lat, lng) => this.syncAutocomplete(lat, lng));
+  }
+
+  syncAutocomplete(lat, lng) {
+    var resolve = (response) => this.setState({ reports: response.reports });
+    Requester.get(
+      ApiConstants.reports.search(lat, lng),
+      resolve,
+    );
   }
 
   // --------------------------------------------------
@@ -18,7 +29,7 @@ class SearchPage extends React.Component {
     return (
       <div className="search-page">
         <Header />
-        <div className="search-grid">
+        <div className="page-container">
           <SearchMap />
           <SearchGraphs />
         </div>

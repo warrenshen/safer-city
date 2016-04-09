@@ -10,6 +10,8 @@ gem "figaro", '1.1.1'
 gem "pg", "0.18.4"
 gem "react-rails", "1.5.0"
 gem "roo"
+gem 'geokit-rails'
+
 
 # Client
 gem 'bootstrap-sass'

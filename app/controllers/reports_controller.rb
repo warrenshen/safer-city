@@ -27,23 +27,31 @@
 #  locatlity_code :integer
 #
 
-class Report < ActiveRecord::Base
-  acts_as_mappable :default_units => :miles,
-                   :default_formula => :sphere,
-                   :distance_field_name => :distance,
-                   :lat_column_name => :latitude,
-                   :lng_column_name => :longitude
+class ReportsController < ApplicationController
+  protect_from_forgery except: :create
 
-  has_many :report_categories
-  has_many :categories, through: :report_categories
-
-  before_create :set_incident_id
-
-  def category_names
-    categories.pluck(:name).map(&:titlecase)
+  def index
+    distance = params[:distance] || 10
+    if params[:lat] and params[:lng]
+      @reports = Report.within(distance, origin: [params[:lat], params[:lng]]).includes(:categories)
+    else
+      @reports = Report.all.includes(:categories)
+    end
+    render json: @reports, each_serializer: ReportsSerializer
   end
 
-  def set_incident_id
-    self.incident_id ||= Report.maximum(:incident_id) + 1
+  def create
+    @report = Report.new(report_params)
+    if @report.save
+      render json: @report
+    else
+      render json: @report, status: 422
+    end
+  end
+
+  private
+
+  def report_params
+    params.require(:report).permit!
   end
 end

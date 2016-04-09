@@ -1,11 +1,15 @@
-
 class SearchGraphs extends React.Component {
 
   // --------------------------------------------------
   // Lifecycle
   // --------------------------------------------------
-  componentDidMount() {
-
+  componentDidUpdate() {
+    d3.select("svg").remove();
+    d3.select("svg").remove();
+    d3.select("#no-content-label")
+      .attr("width", 50)
+      .attr("height", 20)
+      .text("")
     // PIE CHART
 
     var w = 300,                        //width
@@ -15,7 +19,6 @@ class SearchGraphs extends React.Component {
     data = [{"label":"one", "value":20}, 
             {"label":"two", "value":50}, 
             {"label":"three", "value":30}];
-    
     var vis = d3.select("#d3-pie-chart")
         .append("svg:svg")              //create the SVG element inside the <body>
         .data([data])                   //associate our data with the document
@@ -120,8 +123,11 @@ class SearchGraphs extends React.Component {
   }
 
 
-  componentDidUpdate() {
-    
+  componentDidMount() {
+    d3.select("#no-content-label")
+      .attr("width", 50)
+      .attr("height", 20)
+      .text("Please pick a location.")
   }
 
 
@@ -131,7 +137,23 @@ class SearchGraphs extends React.Component {
   render() {
     // TODO(Sameera): Place any d3 component inside the divs below.
     return (
-      <div>
+      <div className="graphs-container">
+        <Clickable
+          action={() => this.setState({ time_frame: 'month' })}
+          className="time-button" 
+          content="Last month"
+          type="h3"/>
+        <Clickable
+          action={() => this.setState({ time_frame: 'year' })}
+          className="time-button" 
+          content="Last year"
+          type="h3"/>
+        <Clickable
+          action={() => this.setState({ time_frame: 'all' })}
+          className="time-button" 
+          content="All time"
+          type="h3"/>
+        <p id="no-content-label"></p>
         <p id="pie-chart-label"></p>
         <div id="d3-pie-chart"></div>
         <p id="bar-graph-label"></p>
