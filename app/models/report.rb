@@ -44,6 +44,6 @@ class Report < ActiveRecord::Base
   end
 
   def set_incident_id
-    self.incident_id = Report.maximum(:incident_id) + 1
+    self.incident_id ||= Report.maximum(:incident_id) + 1
   end
 end
