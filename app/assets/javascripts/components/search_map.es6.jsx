@@ -20,8 +20,9 @@ window.initAutocomplete = function() {
   // more details for that place.
   searchBox.addListener('places_changed', function() {
     var places = searchBox.getPlaces();
-    // TODO: tell backend that it got a new location
-    // GET RID OF THIS LATER
+    lat = places[0].geometry.location.lat()
+    lon = places[0].geometry.location.lng()
+
     this.state = {
       pie_data: [1,2],
       bar_data: [2,3],
