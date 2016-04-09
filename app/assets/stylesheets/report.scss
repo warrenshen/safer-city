@@ -1,4 +1,80 @@
+$color-list: $red, $orange, $purple;
+$severity-list: 'SEVERE', 'MODERATE', 'MILD';
+
 .report-page {
+  .report-container {
+    max-width: 700px;
+    padding-bottom: 60px;
+  }
+
+  .report-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .report-description {
+    color: $d-gray-80;
+    font-weight: 400;
+    line-height: 1.35;
+  }
+
+  .quick-facts-container {
+    background: $l-gray-50;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  }
+
+  .fact {
+    margin-bottom: 13px;
+    padding: 0 20px;
+  }
+
+  .fact-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+
+    .fa {
+      margin-right: 5px;
+    }
+  }
+
+  .severity-container {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 14px 20px;
+  }
+
+  @each $color in $color-list {
+    $i: index($color-list, $color);
+
+    .severity-#{$i - 1} {
+      background: nth($color-list, $i);
+
+      &:after {
+        content: nth($severity-list, $i);
+      }
+    }
+
+    .title-#{$i - 1} {
+      color: nth($color-list, $i);
+    }
+  }
+
+  .fact-data {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .report-map {
+    height: 200px;
+    margin-bottom: 40px;
+    width: 100%;
+  }
 
   #map {
     height: 300px !important;
