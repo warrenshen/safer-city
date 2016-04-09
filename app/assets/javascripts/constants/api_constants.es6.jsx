@@ -24,6 +24,14 @@ class ApiConstants {
       create: '/subscriptions',
     };
   }
+
+  get timeStats() {
+    return {
+      search: (lat, lng) => {
+        return `/reports/time_stats?lat=${lat}&lng=${lng}`;
+      },
+    };
+  }
 }
 
 window.ApiConstants = new ApiConstants();

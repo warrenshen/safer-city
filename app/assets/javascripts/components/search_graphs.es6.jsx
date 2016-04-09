@@ -93,10 +93,15 @@ class SearchGraphs extends React.Component {
       .attr("height", 20)
       .text("Crime Categories")
     // BAR GRAPH
-    var data = {
-    "regions": ["1AM", "2AM", "3AM", "4AM", "5AM", "6AM", "7AM", "8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM", "9PM", 
-    "10PM", "11PM", "12AM"],
-    "institutions": [0, 0, 34, 421, 738, 0, 218, 22, 22, 109, 0, 456]
+    var data = {}
+    console.log(this.state.time_stats)
+
+    if (this.state.time_frame == 'month') {
+
+    } else if (this.state.time_frame == 'year') {
+
+    } else {
+
     }
 
     var margin = {
