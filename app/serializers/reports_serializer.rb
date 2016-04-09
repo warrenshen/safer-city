@@ -5,5 +5,6 @@ class ReportsSerializer < BaseSerializer
              :longitude,
              :location,
              :description,
-             :category_names
+             :category_names,
+             :severity
 end
