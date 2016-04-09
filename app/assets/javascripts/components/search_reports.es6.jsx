@@ -27,13 +27,22 @@ class SearchReports extends React.Component {
   }
 
   renderReports() {
-    return this.props.reports.map((report) => this.renderReport(report));
+    return this.props.reports.map((report, index) => this.renderReport(report, index));
   }
 
   render() {
+    let title;
+    if (this.props.reports.length > 0) {
+      title = <h2 className="category-title">Recent Reports</h2>
+    } else {
+      title = false;
+    }
     return (
-      <div className="graphs-container">
-        {this.renderReports()}
+      <div>
+        {title}
+        <div className="search-reports-container">
+          {this.renderReports()}
+        </div>
       </div>
     );
   }

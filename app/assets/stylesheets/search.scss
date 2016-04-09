@@ -1,22 +1,33 @@
+$color-list: $red, $orange, $yellow;
+$severity-list: 'SEVERE', 'MODERATE', 'MILD';
+
 .search-page {
   .navbar {
+    background: #FCFCFC;
     border-bottom: 1px solid $l-gray;
     margin-bottom: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
 
     .container {
       border-bottom: none;
     }
   }
+
   @include clearAfter;
   height: 100vh;
 
   .page-container {
-    height: calc(100% - 78px);
+    height: 100%;
+    padding-top: 78px;
+    position: relative;
   }
 
   .map-container {
-    float: left;
-    height: 100%;
+    bottom: 0;
+    height: calc(100% - 78px);
+    position: fixed;
     width: 50%;
   }
 
@@ -24,10 +35,114 @@
     height: 100%;
   }
 
-  .graphs-container {
-    float: left;
-    height: 100%;
+  .data-container {
+    bottom: 0;
+    height: calc(100% - 78px);
+    overflow-x: hidden;
     padding: 30px;
+    position: absolute;
+    right: 0;
     width: 50%;
+  }
+
+  .timeframe-label {
+    display: inline-block;
+    margin-top: 5px;
+  }
+
+  .time-option-container {
+    @include clearAfter;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .time-button {
+    border-left: none;
+    border-radius: 0;
+    display: inline-block;
+    font-weight: 500;
+    padding: 10px 20px;
+
+    &:first-of-type {
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      border-left: 1px solid $red;
+    }
+
+    &:last-of-type {
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+
+  .time-button-true {
+    @extend .btn--solid;
+  }
+
+  .category-title {
+    font-size: 24px;
+    margin-bottom: 25px;
+    margin-top: 12px;
+  }
+
+  .chart {
+    margin: 20px auto;
+
+    label {
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+  }
+
+  .search-reports-container {
+    @include prefixer(column-count, 2);
+    @include prefixer(column-gap, 20px);
+  }
+
+  .report {
+    background-color: white;
+    border: 1px solid $l-gray;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px auto;
+    padding: 20px;
+    transition: 100ms;
+    width: 100%;
+
+    .severity {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+
+      .fa {
+        font-size: 10px;
+        margin-right: 5px;
+      }
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 7px;
+    }
+
+    .description {
+      color: $d-gray-80;
+      line-height: 1.3;
+    }
+  }
+
+  @each $color in $color-list {
+    $i: index($color-list, $color);
+
+    .severity-#{$i} {
+      color: nth($color-list, $i);
+
+      &:after {
+        content: nth($severity-list, $i);
+      }
+    }
   }
 }
