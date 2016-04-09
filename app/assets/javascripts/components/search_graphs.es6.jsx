@@ -1,6 +1,15 @@
 class SearchGraphs extends React.Component {
 
   // --------------------------------------------------
+  // Props
+  // --------------------------------------------------
+  static get propTypes() {
+    return {
+      reports: React.PropTypes.array.isRequired,
+    };
+  }
+
+  // --------------------------------------------------
   // Lifecycle
   // --------------------------------------------------
   componentDidUpdate() {
@@ -135,7 +144,6 @@ class SearchGraphs extends React.Component {
   // Render
   // --------------------------------------------------
   render() {
-    // TODO(Sameera): Place any d3 component inside the divs below.
     return (
       <div className="graphs-container">
         <Clickable
