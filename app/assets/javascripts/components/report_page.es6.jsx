@@ -38,6 +38,7 @@ class ReportPage extends React.Component {
             <p className="report-description">{this.props.report.description}</p>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
