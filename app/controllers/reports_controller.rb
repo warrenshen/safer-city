@@ -4,8 +4,6 @@
 #
 #  id             :integer          not null, primary key
 #  incident_id    :integer
-#  date           :date
-#  time           :time
 #  description    :text
 #  location       :string
 #  country_code   :integer
@@ -25,6 +23,7 @@
 #  updated_at     :datetime         not null
 #  title          :string
 #  locatlity_code :integer
+#  datetime       :datetime
 #
 
 class ReportsController < ApplicationController
