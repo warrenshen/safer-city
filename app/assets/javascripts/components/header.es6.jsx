@@ -6,7 +6,10 @@ class Header extends React.Component {
   render() {
     return (
       <div className="header">
-
+        <Clickable
+          content="Search"
+          className="header-jewel"
+          route={RouteConstants.pages.search} />
       </div>
     );
   }
