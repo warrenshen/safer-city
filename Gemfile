@@ -12,11 +12,12 @@ gem "react-rails", "1.5.0"
 gem "roo"
 
 # Client
-gem "font-awesome-rails"
-gem "jquery-rails"
-gem "sass-rails"
-gem "turbolinks"
-gem "uglifier"
+gem 'bootstrap-sass'
+gem 'font-awesome-rails'
+gem 'jquery-rails'
+gem 'sass-rails'
+gem 'turbolinks'
+gem 'uglifier'
 
 group :development do
   gem "annotate"
