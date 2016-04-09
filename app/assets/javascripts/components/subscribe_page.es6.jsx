@@ -83,7 +83,7 @@ class SubscribePage extends React.Component {
               type="email"
               value={this.state.email} />
             <FormQuestion
-              action={(event) => this.setState({ email: event.target.value })}
+              action={(event) => this.setState({ phone_number: event.target.value })}
               label="Phone Number"
               type="tel"
               value={this.state.phone_number} />
