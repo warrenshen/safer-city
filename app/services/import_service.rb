@@ -30,7 +30,7 @@ class ImportService
         last_name: row[40],
         email: row[41],
         approved: row[42] == 'YES',
-        more_info: row[43] == 'YES'
+        more_info: row[43] == 'YES',
       )
     end
   end
@@ -42,7 +42,7 @@ class ImportService
         categories << Category.find_by_name(Category.names[i-12].downcase())
       end
     end
-    puts categories.count
     categories
   end
+
 end

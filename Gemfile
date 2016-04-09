@@ -14,11 +14,12 @@ gem 'geokit-rails'
 
 
 # Client
-gem "font-awesome-rails"
-gem "jquery-rails"
-gem "sass-rails"
-gem "turbolinks"
-gem "uglifier"
+gem 'bootstrap-sass'
+gem 'font-awesome-rails'
+gem 'jquery-rails'
+gem 'sass-rails'
+gem 'turbolinks'
+gem 'uglifier'
 
 group :development do
   gem "annotate"

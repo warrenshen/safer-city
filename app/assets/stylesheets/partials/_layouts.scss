@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FCFCFC;
+}
+
+a {
+  color: inherit;
+}
+
+input {
+  @include appearance(none);
+  border: 1px solid $d-gray-30;
+  border-radius: 3px;
+  color: $d-gray-90;
+  font-size: 16px;
+  outline: none;
+  padding: 8px 10px;
+  transition: 100ms;
+
+  &:focus {
+    border-color: $red;
+  }
+}
+
+.btn {
+  @include appearance(none);
+  border: 1px solid $red;
+  border-radius: 3px;
+  color: $red;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 13px;
+  text-decoration: none;
+}
+
+.btn--solid {
+  @extend .btn;
+  background: $red;
+  color: white;
+}
