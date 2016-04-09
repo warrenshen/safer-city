@@ -83,6 +83,23 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
     max-width: 150px;
   }
 
+  .bar-chart-background {
+    background: $l-gray;
+    bottom: 0;
+    position: absolute;
+    right: 40px;
+    width: 10px;
+    height: 100%;
+  }
+
+  .bar-chart {
+    background: $red;
+    position: absolute;
+    bottom: 0;
+    transition: 100ms;
+    width: 10px;
+  }
+
   .stat-arrow:after {
     animation: bot-to-top 1.2s both infinite;
     content: "\f176";
@@ -127,6 +144,7 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
     }
 
     .severity {
+      display: inline-block;
       font-size: 13px;
       font-weight: 700;
       margin-bottom: 10px;
@@ -138,6 +156,13 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
       }
     }
 
+    .time-label {
+      color: $d-gray-50;
+      float: right;
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
     .title {
       font-size: 18px;
       font-weight: 500;
@@ -147,6 +172,19 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
     .description {
       color: $d-gray-80;
       line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .location-label {
+      color: $d-gray-50;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+      white-space: nowrap;
+
+      .fa {
+        margin-right: 5px;
+      }
     }
   }
 

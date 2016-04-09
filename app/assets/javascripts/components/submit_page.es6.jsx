@@ -71,7 +71,7 @@ class SubmitPage extends React.Component {
         <Header />
         <div className="container form-container">
           <h1 className="page-title">Submit a report</h1>
-          <p className="description">Help spread awareness and keep your neighborhood safe.</p>
+          <p className="description">Help spread awareness and keep your neighborhood safe. Please try to include as much detail as possible!</p>
           <div className="submit-stats-container">
             <div className="stat">
               <h1>{this.props.locationsCount}</h1>
