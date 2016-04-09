@@ -186,7 +186,7 @@ class Mapper {
           }
 
           Requester.get(
-            ApiConstants.reports.search(lat, lng, limit),
+            ApiConstants.reports.search(lat, lng),
             aResolve,
           );
         } else if (this.mode === 'form') {
