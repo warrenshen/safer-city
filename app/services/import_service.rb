@@ -1,6 +1,7 @@
 class ImportService
   def initialize(file)
     @xlsx = Roo::Spreadsheet.open(file, extension: :xlsx)
+    @categories = Category.all
   end
 
   def parse_file
@@ -11,11 +12,15 @@ class ImportService
         first_line = false
         next
       end
+      begin
+        dt = DateTime.new(1899, 12, 30, row[9].to_i, row[10].to_i, 00) + row[2].days
+      rescue
+        dt = row[2]
+      end
       Report.create(
         incident_id: row[0],
         title: row[1],
-        # date: row[2],
-        # time: row[7],
+        datetime: dt,
         description: row[11],
         categories: fill_categories(row),
         location: row[30],
@@ -40,7 +45,7 @@ class ImportService
     categories = []
     (12...29).each do |i|
       if row[i] == 1
-        categories << Category.find_by_name(Category.names[i-12].downcase())
+        categories << @categories.find_by_name(Category.names[i-12].downcase())
       end
     end
     categories
