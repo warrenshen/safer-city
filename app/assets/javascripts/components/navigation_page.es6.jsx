@@ -10,7 +10,8 @@ class NavigationPage extends React.Component {
         dstLng: '',
         dstMarker: '',
         reports: [],
-        map: ''
+        map: '',
+        bestRoute: '',
       };
   }
 
@@ -36,15 +37,50 @@ class NavigationPage extends React.Component {
       };
       directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-          console.log(result)
           for (var i = 0, len = result.routes.length; i < len; i++) {
                 new google.maps.DirectionsRenderer({
                     map: mainMap,
                     directions: result,
                     routeIndex: i
                 });
+
             }
         }
+
+        var routes = result.routes
+        var requester = window.Requester
+        var resolve = (response) => {
+          var reports = response.reports
+          var minCost = Infinity
+          var bestRoute;
+          for (var i = 0, len = routes.length; i < len; i++) {
+            var route = routes[i]
+            var overviewPath = route.overview_path
+            var cost = 0
+            for (var j = 0, lenTwo = overviewPath.length; j < lenTwo; j++) {
+              var pathPoint = overviewPath[j];
+              for (var k = 0, lenThree = reports.length; k < lenThree; k++) {
+                var attackPoint = reports[k]
+                var x = (attackPoint.lat - pathPoint.lat)*(attackPoint.lat - pathPoint.lat)
+                var y = (attackPoint.lng - pathPoint.lng)*(attackPoint.lng - pathPoint.lng)
+                cost += Math.sqrt(x, y)
+                // want to minimize cost
+              };
+            }
+            if (cost < minCost) {
+              minCost = cost
+              bestRoute = route
+            }
+          }
+          console.log(bestRoute)
+        };
+
+        Requester.get(
+          ApiConstants.reports.search(start.lat, start.lng, 5),
+          resolve,
+        );
+            // show the cards for routes with the following rankings:
+
       });
     }
   }
