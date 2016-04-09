@@ -19,6 +19,13 @@ class Category < ActiveRecord::Base
     'NON-VERBAL ABUSE', 'PHYSICAL ABUSE', 'SERIOUS PHYSICAL ABUSE', 'OTHER ABUSE']
   end
 
+  def self.severities
+    [2, 2, 1, 2,
+    1, 1, 0, 1, 0,
+    1, 0, 2, 2, 1,
+    1, 0, 0, 1]
+  end
+
   def reports_count
     reports.count
   end
