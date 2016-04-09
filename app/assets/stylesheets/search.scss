@@ -147,4 +147,11 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
       @include transform(translateX(-50%));
     }
   }
+
+  @media all and (max-width: 670px) {
+    .search-reports-container {
+      @include prefixer(column-count, 1);
+      @include prefixer(column-gap, 0);
+    }
+  }
 }

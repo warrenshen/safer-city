@@ -195,4 +195,20 @@ textarea {
   .nav-hide {
     display: none;
   }
+
+  .nav-links {
+    text-align: center;
+
+    .link:last-of-type {
+      display: inline-block;
+      margin-top: 15px;
+    }
+  }
+
+  .submit-btn {
+    float: none;
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
+  }
 }
