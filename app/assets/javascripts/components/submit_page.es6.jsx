@@ -6,7 +6,7 @@ class SubmitPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      category: '',
+      creationCategories: [],
       date: '',
       description: '',
       lat: null,
@@ -35,6 +35,42 @@ class SubmitPage extends React.Component {
       (location, lat, lng) => this.syncAutocomplete(location, lat, lng),
       'form',
     );
+    var categories = [
+      'Catcalls/Whistles',
+      'Commenting',
+      'Sexual Invites',
+      'Ogling/Facial Expressions/Staring',
+      'Taking Pictures',
+      'Indecent Exposure',
+      'Touching/Groping',
+      'Stalking',
+      'Rape / Sexual Assault',
+      'Poor / No Street Lighting',
+      'Chain Snatching',
+      'North East India Report',
+      'Others',
+      'VERBAL ABUSE',
+      'NON-VERBAL ABUSE',
+      'PHYSICAL ABUSE',
+      'SERIOUS PHYSICAL ABUSE',
+      'OTHER ABUSE',
+    ];
+    categories.map((category) => {
+      var node = ReactDOM.findDOMNode(this.refs[category]);
+      node.onchange = (event) => {
+        var value = event.target.value;
+        var creationCategories = this.state.creationCategories;
+        if (event.target.checked) {
+          if (creationCategories.indexOf(value) === -1) {
+            creationCategories.push(value);
+            this.setState({ creationCategories: creationCategories });
+          }
+        } else {
+          creationCategories = creationCategories.filter((category) => category !== value);
+          this.setState({ creationCategories: creationCategories });
+        }
+      }
+    });
   }
 
   // --------------------------------------------------
@@ -42,7 +78,7 @@ class SubmitPage extends React.Component {
   // --------------------------------------------------
   submitForm() {
     var attributes = {
-      // category: this.state.category,
+      creation_categories: this.state.creationCategories,
       date: this.state.date,
       description: this.state.description,
       latitude: this.state.lat,
@@ -68,7 +104,44 @@ class SubmitPage extends React.Component {
   // --------------------------------------------------
   // Render
   // --------------------------------------------------
+  renderCategory(category, index) {
+    return (
+      <div className="checkbox-container" key={index}>
+        <label>{category}</label>
+        <input
+          ref={category}
+          type="checkbox"
+          value={category} />
+      </div>
+    );
+  }
+
+  renderCategories() {
+    var categories = [
+      'Catcalls/Whistles',
+      'Commenting',
+      'Sexual Invites',
+      'Ogling/Facial Expressions/Staring',
+      'Taking Pictures',
+      'Indecent Exposure',
+      'Touching/Groping',
+      'Stalking',
+      'Rape / Sexual Assault',
+      'Poor / No Street Lighting',
+      'Chain Snatching',
+      'North East India Report',
+      'Others',
+      'VERBAL ABUSE',
+      'NON-VERBAL ABUSE',
+      'PHYSICAL ABUSE',
+      'SERIOUS PHYSICAL ABUSE',
+      'OTHER ABUSE',
+    ];
+    return categories.map((category, index) => this.renderCategory(category, index));
+  }
+
   render() {
+    console.log(this.state.creationCategories);
     return (
       <div className="report-page">
         <Header />
@@ -82,7 +155,7 @@ class SubmitPage extends React.Component {
             </div>
             <div className="stat">
               <h1>{this.props.reportsCount}</h1>
-              <h3>Total notifications</h3>
+              <h3>Total reports</h3>
             </div>
           </div>
           <form className="report-form">
@@ -121,11 +194,8 @@ class SubmitPage extends React.Component {
                   type="time" />
               </div>
             </div>
-            <FormQuestion
-              action={(event) => this.setState({ category: event.target.value })}
-              label="Category"
-              value={this.state.category}
-              type="select" />
+            <label>Category</label>
+            {this.renderCategories()}
             <Clickable
               action={() => this.submitForm()}
               className="btn--solid submit-btn"
