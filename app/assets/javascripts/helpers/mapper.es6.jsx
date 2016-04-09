@@ -33,10 +33,10 @@ class Mapper {
     // more details for that place.
     searchBox.addListener('places_changed', () => {
       var places = searchBox.getPlaces();
-      lat = places[0].geometry.location.lat();
-      lon = places[0].geometry.location.lng();
+      var lat = places[0].geometry.location.lat();
+      var lon = places[0].geometry.location.lng();
 
-      this.listener({lat: lat, lon: lon});
+      this.listener(lat, lon);
 
       if (places.length == 0) {
         return;

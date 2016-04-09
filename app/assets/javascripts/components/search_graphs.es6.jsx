@@ -1,10 +1,18 @@
 class SearchGraphs extends React.Component {
 
   // --------------------------------------------------
+  // Props
+  // --------------------------------------------------
+  static get propTypes() {
+    return {
+      reports: React.PropTypes.array.isRequired,
+    };
+  }
+
+  // --------------------------------------------------
   // Lifecycle
   // --------------------------------------------------
   componentDidMount() {
-
     // PIE CHART
     var dataset = [
       { label: 'Abulia', count: 10 },
@@ -68,7 +76,6 @@ class SearchGraphs extends React.Component {
   // Render
   // --------------------------------------------------
   render() {
-    // TODO(Sameera): Place any d3 component inside the divs below.
     return (
       <div className="graphs-container">
         <div id="d3-pie-chart"></div>
