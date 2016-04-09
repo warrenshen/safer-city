@@ -27,6 +27,12 @@ class Header extends React.Component {
             </li>
             <li className="link">
               <Clickable
+                content="Route me"
+                route={RouteConstants.pages.navigation}
+                type="none" />
+            </li>
+            <li className="link">
+              <Clickable
                 className="btn btn--solid"
                 content="New Report"
                 route={RouteConstants.pages.submit}

@@ -18,8 +18,9 @@ ActiveRecord::Schema.define(version: 20160409150807) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "severity",   default: 0
   end
 
   create_table "notifications", force: :cascade do |t|

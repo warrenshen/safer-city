@@ -46,6 +46,10 @@ class Report < ActiveRecord::Base
     self.incident_id ||= Report.maximum(:incident_id) + 1
   end
 
+  def severity
+    categories.map(&:severity).min
+  end
+
   def generate_texts
     subscriptions = Subscription.within(5, origin: self)
     subscriptions.each do |subscription|

@@ -1,3 +1,3 @@
 class CategoriesSerializer < BaseSerializer
-  attributes :name, :reports_count
+  attributes :name, :reports_count, :severity
 end
