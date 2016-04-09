@@ -5,7 +5,7 @@ class ApiConstants {
       create: '/reports',
       recent: '/reports/recent',
       search: (lat, lng, limit) => {
-        return `/reports?lat=${lat}&lng=${lng}&limit=${limit}`;
+        return `/reports?lat=${lat}&lng=${lng}&limit=150`;
       },
       show: (id) => `/reports/${id}`,
     };

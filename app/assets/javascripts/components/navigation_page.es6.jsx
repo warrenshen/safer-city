@@ -35,24 +35,43 @@ class NavigationPage extends React.Component {
         travelMode: google.maps.DirectionsTravelMode.WALKING,
         provideRouteAlternatives: true,
       };
-      directionsService.route(request, function(result, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-          for (var i = 0, len = result.routes.length; i < len; i++) {
-                new google.maps.DirectionsRenderer({
-                    map: mainMap,
-                    directions: result,
-                    routeIndex: i
-                });
 
-            }
-        }
+      directionsService.route(request, function(result, status) {
 
         var routes = result.routes
         var requester = window.Requester
         var resolve = (response) => {
           var reports = response.reports
+
+          var arrayLength = reports.length;
+          for (var i = 0; i < arrayLength; i++) {
+            var markerLat = response.reports[i].latitude;
+            var markerLng = response.reports[i].longitude;
+            var markerTitle = response.reports[i].title;
+            var markerDesc = response.reports[i].description;
+
+            var marker = new google.maps.Marker({
+              map: mainMap,
+              position: { lat: markerLat, lng: markerLng },
+              title: markerTitle,
+            });
+
+            marker.addListener(
+              'click',
+              () => {
+                var infowindow = new google.maps.InfoWindow({
+                  content: markerDesc,
+                });
+                infowindow.open(mainMap, marker);
+              },
+            );
+          }
+
+
           var minCost = Infinity
-          var bestRoute;
+          var bestRoute = routes[0]
+          var maxCost = 0
+          var worstRoute = routes[0]
           for (var i = 0, len = routes.length; i < len; i++) {
             var route = routes[i]
             var overviewPath = route.overview_path
@@ -61,22 +80,48 @@ class NavigationPage extends React.Component {
               var pathPoint = overviewPath[j];
               for (var k = 0, lenThree = reports.length; k < lenThree; k++) {
                 var attackPoint = reports[k]
-                var x = (attackPoint.lat - pathPoint.lat)*(attackPoint.lat - pathPoint.lat)
-                var y = (attackPoint.lng - pathPoint.lng)*(attackPoint.lng - pathPoint.lng)
+                var x = (attackPoint.latitude - pathPoint.lat())*(attackPoint.latitude - pathPoint.lat())
+                var y = (attackPoint.longitude - pathPoint.lng())*(attackPoint.longitude - pathPoint.lng())
                 cost += Math.sqrt(x, y)
                 // want to minimize cost
               };
             }
+
             if (cost < minCost) {
               minCost = cost
               bestRoute = route
             }
+            if (cost > maxCost) {
+              maxCost = cost
+              worstRoute = route
+            }
           }
-          console.log(bestRoute)
+
+          var polylineOptionsActual = new google.maps.Polyline({
+            strokeColor: '#43AD0D',
+            strokeOpacity: 1.0,
+            strokeWeight: 5
+          });
+          for (var i = 0, len = result.routes.length; i < len; i++) {
+            if (routes[i] == bestRoute) {
+              new google.maps.DirectionsRenderer({
+                map: mainMap,
+                directions: result,
+                routeIndex: i,
+                polylineOptions: polylineOptionsActual
+              });
+            } else {
+              new google.maps.DirectionsRenderer({
+                map: mainMap,
+                directions: result,
+                routeIndex: i,
+              });
+            }
+          }
         };
 
         Requester.get(
-          ApiConstants.reports.search(start.lat, start.lng, 5),
+          ApiConstants.reports.search(start.lat(), start.lng()),
           resolve,
         );
             // show the cards for routes with the following rankings:
