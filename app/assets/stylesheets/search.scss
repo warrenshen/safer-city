@@ -44,6 +44,46 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
     width: 50%;
   }
 
+  .timeframe-label {
+    display: inline-block;
+    margin-top: 5px;
+  }
+
+  .time-option-container {
+    @include clearAfter;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .time-button {
+    border-left: none;
+    border-radius: 0;
+    display: inline-block;
+    font-weight: 500;
+    padding: 10px 20px;
+
+    &:first-of-type {
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      border-left: 1px solid $red;
+    }
+
+    &:last-of-type {
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+
+  .time-button-true {
+    @extend .btn--solid;
+  }
+
+  .category-title {
+    font-size: 24px;
+    margin-bottom: 25px;
+    margin-top: 12px;
+  }
+
   .search-reports-container {
     @include prefixer(column-count, 2);
     @include prefixer(column-gap, 20px);

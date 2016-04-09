@@ -1,5 +1,12 @@
 class SearchGraphs extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      time_frame: '',
+    };
+  }
+
   // --------------------------------------------------
   // Props
   // --------------------------------------------------
@@ -25,8 +32,8 @@ class SearchGraphs extends React.Component {
     h = 300,                            //height
     r = 100,                            //radius
     color = d3.scale.category20c();     //builtin range of colors
-    data = [{"label":"one", "value":20}, 
-            {"label":"two", "value":50}, 
+    data = [{"label":"one", "value":20},
+            {"label":"two", "value":50},
             {"label":"three", "value":30}];
     var vis = d3.select("#d3-pie-chart")
         .append("svg:svg")              //create the SVG element inside the <body>
@@ -40,7 +47,7 @@ class SearchGraphs extends React.Component {
     var pie = d3.layout.pie()           //this will create arc data for us given a list of values
         .value(function(d) { return d.value; });    //we must tell it out to access the value of each element in our data array
     var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with class slice (there aren't any yet)
-        .data(pie)                          //associate the generated pie data (an array of arcs, each having startAngle, endAngle and value properties) 
+        .data(pie)                          //associate the generated pie data (an array of arcs, each having startAngle, endAngle and value properties)
         .enter()                            //this will create <g> elements for every "extra" data element that should be associated with a selection. The result is creating a <g> for every object in the data array
             .append("svg:g")                //create a group to hold each slice (we will have a <path> and a <text> element associated with each slice)
                 .attr("class", "slice");    //allow us to style things in the slices (like text)
@@ -146,21 +153,28 @@ class SearchGraphs extends React.Component {
   render() {
     return (
       <div className="graphs-container">
-        <Clickable
-          action={() => this.setState({ time_frame: 'month' })}
-          className="time-button" 
-          content="Last month"
-          type="h3"/>
-        <Clickable
-          action={() => this.setState({ time_frame: 'year' })}
-          className="time-button" 
-          content="Last year"
-          type="h3"/>
-        <Clickable
-          action={() => this.setState({ time_frame: 'all' })}
-          className="time-button" 
-          content="All time"
-          type="h3"/>
+        <div className="row">
+          <div className="col-md-2"><label className="timeframe-label">Timeframe</label></div>
+          <div className="col-md-10">
+            <div className="time-option-container">
+              <Clickable
+                action={() => this.setState({ time_frame: 'month' })}
+                className={`btn time-button time-button-${this.state.time_frame == 'month'}`}
+                content="Last month"
+                type="h3"/>
+              <Clickable
+                action={() => this.setState({ time_frame: 'year' })}
+                className={`btn time-button time-button-${this.state.time_frame == 'year'}`}
+                content="Last year"
+                type="h3"/>
+              <Clickable
+                action={() => this.setState({ time_frame: 'all' })}
+                className={`btn time-button time-button-${this.state.time_frame == 'all'}`}
+                content="All time"
+                type="h3"/>
+            </div>
+          </div>
+        </div>
         <p id="no-content-label"></p>
         <p id="pie-chart-label"></p>
         <div id="d3-pie-chart"></div>

@@ -33,7 +33,9 @@ class SearchPage extends React.Component {
         <div className="page-container">
           <SearchMap />
           <div className="data-container">
+            <h2 className="category-title">Statistics</h2>
             <SearchGraphs reports={this.state.reports} />
+            <h2 className="category-title">Recent Reports</h2>
             <SearchReports reports={this.state.reports} />
           </div>
         </div>
