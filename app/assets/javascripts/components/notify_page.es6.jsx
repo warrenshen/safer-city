@@ -12,6 +12,23 @@ class NotifyPage extends React.Component {
   }
 
   // --------------------------------------------------
+  // Helpers
+  // --------------------------------------------------
+  submitForm() {
+    var attributes = {
+      email: this.state.email,
+      phone_number: this.state.phone_number,
+    };
+    var params = { subscription: attributes };
+    var resolve = (response) => console.log('hello');
+    Requester.post(
+      ApiConstants.subscriptions.create,
+      params,
+      resolve,
+    );
+  }
+
+  // --------------------------------------------------
   // Render
   // --------------------------------------------------
   render() {
@@ -32,7 +49,11 @@ class NotifyPage extends React.Component {
               label="Phone Number"
               value={this.state.phone_number}
               type="tel" />
-            <input className="btn--solid submit-btn" type="submit" value="Submit"/>
+            <Clickable
+              action={() => this.submitForm()}
+              className="btn--solid submit-btn"
+              content="Submit"
+              type="none" />
           </form>
         </div>
       </div>

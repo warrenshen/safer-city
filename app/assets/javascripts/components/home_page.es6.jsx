@@ -103,7 +103,9 @@ class HomePage extends React.Component {
                 <img src="/assets/logo.jpg"/>
               </div>
             </a>
-            <div className={`nav-search-container nav-hide nav-scroll-${this.state.scrollState}`}><SearchBar/></div>
+            <div className={`nav-search-container nav-hide nav-scroll-${this.state.scrollState}`}>
+              <SearchBar/>
+            </div>
             <ul className="nav-links">
               <li className="link"><a href={RouteConstants.pages.search}>Map</a></li>
               <li className="link"><a href={RouteConstants.pages.notify}>Notifications</a></li>

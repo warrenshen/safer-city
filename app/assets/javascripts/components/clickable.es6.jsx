@@ -23,6 +23,7 @@ class Clickable extends React.Component {
         'h5',
         'h6',
         'i',
+        'none',
         'p',
       ]).isRequired,
     };
@@ -111,6 +112,15 @@ class Clickable extends React.Component {
           href={props.route}
           ref="container">
           {this.renderChildren()}
+        </a>
+      );
+    } else if (props.type === 'none') {
+      return (
+        <a
+          className={props.className}
+          href={props.route}
+          ref="container">
+          {props.content}
         </a>
       );
     } else {
