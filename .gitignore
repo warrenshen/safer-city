@@ -7,6 +7,12 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore application environment variables.
+config/application.yml
+
+# Ignore any top-level xlsx files.
+config/*.xlsx
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
