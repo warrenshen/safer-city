@@ -98,16 +98,16 @@ class HomePage extends React.Component {
       <div className="home-page">
         <nav className="navbar">
           <div className="container">
-            <a href="/">
+            <a href={RouteConstants.pages.home}>
               <div className={`nav-logo-container nav-hide nav-scroll-${this.state.scrollState}`}>
                 <img src="/assets/logo.jpg"/>
               </div>
             </a>
             <div className={`nav-search-container nav-hide nav-scroll-${this.state.scrollState}`}><SearchBar/></div>
             <ul className="nav-links">
-              <li className="link"><a href="/search">Map</a></li>
-              <li className="link"><a href="/notify">Notifications</a></li>
-              <li className="link"><a href="/" className="btn btn--solid">New Report</a></li>
+              <li className="link"><a href={RouteConstants.pages.search}>Map</a></li>
+              <li className="link"><a href={RouteConstants.pages.notify}>Notifications</a></li>
+              <li className="link"><a className="btn btn--solid">New Report</a></li>
             </ul>
           </div>
         </nav>
