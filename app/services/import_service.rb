@@ -10,6 +10,7 @@ class ImportService
       if first_line
         first_line = false
         next
+      end
       Report.create(
         incident_id: row[0],
         title: row[1],
@@ -30,7 +31,7 @@ class ImportService
         last_name: row[40],
         email: row[41],
         approved: row[42] == 'YES',
-        more_info: row[43] == 'YES',
+        verified: row[43] == 'YES',
       )
     end
   end
