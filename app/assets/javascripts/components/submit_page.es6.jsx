@@ -40,7 +40,7 @@ class SubmitPage extends React.Component {
       title: this.state.title,
     };
     var params = { report: attributes };
-    var resolve = (response) => window.location = RouteConstants.pages.reportSuccess;
+    var resolve = (response) => window.location = RouteConstants.pages.submitSuccess;
     Requester.post(
       ApiConstants.reports.create,
       params,

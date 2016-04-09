@@ -27,6 +27,7 @@
 #
 
 class Report < ActiveRecord::Base
+  attr_accessor :date, :time
   acts_as_mappable :default_units => :miles,
                    :default_formula => :sphere,
                    :distance_field_name => :distance,
@@ -37,6 +38,7 @@ class Report < ActiveRecord::Base
   has_many :categories, through: :report_categories
 
   before_create :set_incident_id
+  before_create :set_datetime
 
   def category_names
     categories.map(&:name).map(&:titlecase)
@@ -44,6 +46,10 @@ class Report < ActiveRecord::Base
 
   def set_incident_id
     self.incident_id ||= Report.maximum(:incident_id) + 1
+  end
+
+  def set_datetime
+    self.datetime ||= DateTime.parse("#{ self.date } #{ self.time }")
   end
 
   def severity
