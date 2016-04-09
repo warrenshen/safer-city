@@ -18,7 +18,7 @@ class SearchPage extends React.Component {
   syncAutocomplete(lat, lng) {
     var resolve = (response) => console.log(response);
     Requester.get(
-      ApiConstants.students.show(id),
+      ApiConstants.reports.search(lat, lng),
       resolve,
     );
   }
