@@ -2,7 +2,6 @@ class CategoriesController < ApplicationController
   def index
     if params[:lng] and params[:lat]
       get_reports
-      puts @reports
       categories = Hash.new(0)
       @reports.each do |r|
         r.category_names.each do |n|
