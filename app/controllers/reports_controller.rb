@@ -37,6 +37,7 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
     if @report.save
+      @report.generate_texts
       render json: @report
     else
       render json: @report, status: 422

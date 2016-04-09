@@ -11,6 +11,7 @@ gem "pg", "0.18.4"
 gem "react-rails", "1.5.0"
 gem "roo"
 gem 'geokit-rails'
+gem 'twilio-ruby'
 
 
 # Client
