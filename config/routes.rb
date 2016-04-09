@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root "pages#home"
 
   get "report", to: "pages#report"
+  get "report/success", to: "pages#report_success"
   get "search", to: "pages#search"
   get "subscribe", to: "pages#subscribe"
   get "subscribe/success", to: "pages#subscribe_success"

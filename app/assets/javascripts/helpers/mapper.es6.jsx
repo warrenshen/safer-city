@@ -2,10 +2,12 @@ class Mapper {
 
   constructor() {
     this.listener = null;
+    this.mode = null;
   }
 
-  attachListener(listener) {
+  attachListener(listener, mode) {
     this.listener = listener;
+    this.mode = mode;
   }
 
   initializeAutocomplete() {
@@ -42,46 +44,52 @@ class Mapper {
       var miles = 20;
 
       // TODO: get stats and markers and set markers
-      var markerresolve = (response) => {
+      if (this.mode === 'search') {
+        var markerresolve = (response) => {
+          var resolve = (response) => {
 
-          // Clear out the old markers.
-          markers.forEach((marker) => marker.setMap(null));
-          markers = [];
-          var arrayLength = response.reports.length;
-          for (var i = 0; i < arrayLength; i++) {
-            var markerLat = response.reports[i].latitude
-            var markerLng = response.reports[i].longitude
-            var markerTitle = response.reports[i].title
-            var markerDesc = response.reports[i].description
+            // Clear out the old markers.
+            markers.forEach((marker) => marker.setMap(null));
+            markers = [];
+            var arrayLength = response.reports.length;
+            for (var i = 0; i < arrayLength; i++) {
+              var markerLat = response.reports[i].latitude
+              var markerLng = response.reports[i].longitude
+              var markerTitle = response.reports[i].title
+              var markerDesc = response.reports[i].description
 
-            var marker = new google.maps.Marker({
-              position: {lat: markerLat, lng: markerLng},
-              map: map,
-              title: markerTitle
-            });
-
-            marker.addListener('click', function() {
-              var infowindow = new google.maps.InfoWindow({
-                content: markerDesc
+              var marker = new google.maps.Marker({
+                position: {lat: markerLat, lng: markerLng},
+                map: map,
+                title: markerTitle
               });
-              infowindow.open(map, marker);
-            });
-          }
-      };
 
-      Requester.get(
-        ApiConstants.reports.search(lat, lng),
-        markerresolve,
-      );
+              marker.addListener('click', function() {
+                var infowindow = new google.maps.InfoWindow({
+                  content: markerDesc
+                });
+                infowindow.open(map, marker);
+              });
+            }
+          };
 
-      var statsresolve = (response) => {
-        this.listener(response.categories);
-      };
+          Requester.get(
+            ApiConstants.reports.search(lat, lng),
+            markerresolve,
+          );
 
-      Requester.get(
-        ApiConstants.categories.search(lat, lng),
-        statsresolve,
-      );
+          var statsresolve = (response) => {
+            this.listener(response.categories);
+          };
+
+          Requester.get(
+            ApiConstants.categories.search(lat, lng),
+            statsresolve,
+          );
+        }
+      } else if (this.mode === 'form') {
+        this.listener(lat, lng);
+      }
 
       if (places.length == 0) {
         return;

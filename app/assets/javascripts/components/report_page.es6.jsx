@@ -6,17 +6,24 @@ class ReportPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: '',
-      description: '',
-      date: '',
-      time: '',
       category: '',
+      date: '',
+      description: '',
       lat: '',
       lng: '',
-      name: '',
-      phone_number: '',
-      email: '',
+      time: '',
+      title: '',
     };
+  }
+
+  // --------------------------------------------------
+  // Lifecycle
+  // --------------------------------------------------
+  componentDidMount() {
+    Mapper.attachListener(
+      (lat, lng) => this.syncAutocomplete(lat, lng),
+      'form',
+    );
   }
 
   // --------------------------------------------------
@@ -24,30 +31,27 @@ class ReportPage extends React.Component {
   // --------------------------------------------------
   submitForm() {
     var attributes = {
-      title: this.state.title,
-      description: this.state.description,
+      // category: this.state.category,
       date: this.state.date,
+      description: this.state.description,
+      latitude: this.state.lat,
+      longitude: this.state.lng,
       time: this.state.time,
-      category: this.state.category,
-      lat: this.state.lat,
-      lng: this.state.lng,
+      title: this.state.title,
     };
-    if (this.state.name != '') {
-      attributes[name] = this.state.name
-    }
-    if (this.state.phone_number != '') {
-      attributes[phone_number] = this.state.phone_number
-    }
-    if (this.state.email != '') {
-      attributes[email] = this.state.email
-    }
-    var params = { subscription: attributes };
+    var params = { report: attributes };
+    var resolve = (response) => window.location = RouteConstants.pages.reportSuccess;
     Requester.post(
-      ApiConstants.submissions.create,
+      ApiConstants.reports.create,
       params,
       resolve,
     );
   }
+
+  syncAutocomplete(lat, lng) {
+    this.setState({ lat: lat, lng: lng });
+  }
+
 
   // --------------------------------------------------
   // Render
@@ -57,9 +61,17 @@ class ReportPage extends React.Component {
       <div className="report-page">
         <Header />
         <div className="container form-container">
-          <h1 className="page-title">Submit</h1>
-          <p className="description">Submit a report and help spread awareness.</p>
+          <h1 className="page-title">Submit a Report</h1>
+          <p className="description">Help spread awareness and keep your neighborhood safe.</p>
           <form className="report-form">
+            <p>Location</p>
+            <div className="map-container">
+              <input
+                className="controls"
+                id="pac-input"
+                placeholder="Search" />
+              <div id="map" style={{height: "512"}}></div>
+            </div>
             <FormQuestion
               action={(event) => this.setState({ title: event.target.value })}
               label="Title"
@@ -69,46 +81,29 @@ class ReportPage extends React.Component {
               action={(event) => this.setState({ description: event.target.value })}
               label="Description"
               value={this.state.description}
+              style="textarea"
               type="textarea" />
-            <FormQuestion
-              action={(event) => this.setState({ date: event.target.value })}
-              label="Date"
-              value={this.state.date}
-              type="date" />
-            <FormQuestion
-              action={(event) => this.setState({ time: event.target.value })}
-              label="Time"
-              value={this.state.time}
-              type="time" />
+            <div className="row">
+              <div className="col-md-6">
+                <FormQuestion
+                  action={(event) => this.setState({ date: event.target.value })}
+                  label="Date"
+                  value={this.state.date}
+                  type="date" />
+              </div>
+              <div className="col-md-6">
+                <FormQuestion
+                  action={(event) => this.setState({ time: event.target.value })}
+                  label="Time"
+                  value={this.state.time}
+                  type="time" />
+              </div>
+            </div>
             <FormQuestion
               action={(event) => this.setState({ category: event.target.value })}
               label="Category"
               value={this.state.category}
               type="select" />
-            <p>Location</p>
-            <div className="map-container">
-              <input id="pac-input"
-                     className="controls"
-                     type="text"
-                     placeholder="Search Box" />
-              <div id="map" style={{height: "100"}}></div>
-            </div>
-            <p>Optional</p>
-            <FormQuestion
-              action={(event) => this.setState({ title: event.target.value })}
-              label="Full Name"
-              value={this.state.title}
-              type="text" />
-            <FormQuestion
-              action={(event) => this.setState({ phone_number: event.target.value })}
-              label="Phone number"
-              value={this.state.phone_number}
-              type="tel" />
-            <FormQuestion
-              action={(event) => this.setState({ email: event.target.value })}
-              label="Email"
-              value={this.state.email}
-              type="email" />
             <Clickable
               action={() => this.submitForm()}
               className="btn--solid submit-btn"

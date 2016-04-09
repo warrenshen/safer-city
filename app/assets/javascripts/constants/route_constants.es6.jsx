@@ -4,6 +4,7 @@ class RouteConstants {
     return {
       home: '/',
       report: '/report',
+      reportSuccess: '/report/success',
       search: '/search',
       subscribe: '/subscribe',
       subscribeSuccess: '/subscribe/success',

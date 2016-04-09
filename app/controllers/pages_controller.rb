@@ -8,6 +8,10 @@ class PagesController < ApplicationController
 
   end
 
+  def report_success
+
+  end
+
   def search
 
   end

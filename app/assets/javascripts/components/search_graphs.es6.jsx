@@ -160,8 +160,8 @@ class SearchGraphs extends React.Component {
     return (
       <div className="graphs-container">
         <div className="row">
-          <div className="col-md-2"><label className="timeframe-label">Timeframe</label></div>
-          <div className="col-md-10">
+          <div className="col-md-2 col-sm-2"><label className="timeframe-label">Timeframe</label></div>
+          <div className="col-md-10 col-sm-10">
             <div className="time-option-container">
               <Clickable
                 action={() => this.setState({ time_frame: 'month' })}
