@@ -43,6 +43,10 @@ class Report < ActiveRecord::Base
   before_create :set_incident_id
   before_create :set_datetime
 
+  def self.locations_count
+    select(:location).map(&:location).uniq.count
+  end
+
   def category_names
     categories.map(&:name).map(&:titlecase)
   end

@@ -4,6 +4,9 @@ class ReportsGrid extends React.Component {
   // Render
   // --------------------------------------------------
   renderReport(report) {
+    var d = new Date(report.datetime);
+    var day = d.toDateString();
+    var time = d.toTimeString().split(' ')[0];
     return (
       <Clickable
         className="report"
@@ -13,6 +16,8 @@ class ReportsGrid extends React.Component {
         <div className={`severity severity-${report.severity}`}>
           <span className="fa fa-circle"></span>
         </div>
+        <p>{day}</p>
+        <p>{time}</p>
         <h1 className="title">{`${report.title}`}</h1>
         <p className="description">{report.description}</p>
       </Clickable>
