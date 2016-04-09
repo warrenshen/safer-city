@@ -4,7 +4,14 @@ class HomePage extends React.Component {
   // Helpers
   // --------------------------------------------------
   generateReports() {
-
+    return [
+      {
+        first_name: 'Kira',
+        id: 1,
+        last_name: 'Klapper',
+        description: 'A silly little doge.',
+      },
+    ];
   }
 
   // --------------------------------------------------
