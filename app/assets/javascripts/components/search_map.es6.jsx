@@ -1,7 +1,7 @@
 window.initAutocomplete = function() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -33.8688, lng: 151.2195},
-    zoom: 13,
+    center: {lat: 28.61, lng: 77.1776},
+    zoom: 10,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
@@ -75,7 +75,7 @@ class SearchMap extends React.Component {
   // --------------------------------------------------
   render() {
     return (
-      <div>
+      <div className="map-container">
         <input id="pac-input" className="controls" type="text" placeholder="Search Box" />
       	<div id="map"></div>
       </div>
