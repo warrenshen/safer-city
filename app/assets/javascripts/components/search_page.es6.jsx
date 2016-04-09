@@ -1,11 +1,11 @@
-class HomePage extends React.Component {
+class SearchPage extends React.Component {
 
   // --------------------------------------------------
   // Render
   // --------------------------------------------------
   render() {
     return (
-      <div className="home-page">
+      <div className="search-page">
         <Header />
       </div>
     );
