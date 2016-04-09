@@ -12,7 +12,7 @@ class SearchGraphs extends React.Component {
   // --------------------------------------------------
   static get propTypes() {
     return {
-      categories: React.PropTypes.array.isRequired,
+      categories: React.PropTypes.object.isRequired,
       reports: React.PropTypes.array.isRequired,
     };
   }
