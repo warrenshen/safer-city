@@ -49,11 +49,11 @@ class SubmitPage extends React.Component {
       'Chain Snatching',
       'North East India Report',
       'Others',
-      'VERBAL ABUSE',
-      'NON-VERBAL ABUSE',
-      'PHYSICAL ABUSE',
-      'SERIOUS PHYSICAL ABUSE',
-      'OTHER ABUSE',
+      'Verbal abuse',
+      'Non-verbal abuse',
+      'Physical abuse',
+      'Serious physical abuse',
+      'Other abuse',
     ];
     categories.map((category) => {
       var node = ReactDOM.findDOMNode(this.refs[category]);
@@ -107,11 +107,12 @@ class SubmitPage extends React.Component {
   renderCategory(category, index) {
     return (
       <div className="checkbox-container" key={index}>
-        <label>{category}</label>
         <input
+          id={category + index}
           ref={category}
           type="checkbox"
           value={category} />
+        <label htmlFor={category + index}>{category}</label>
       </div>
     );
   }
@@ -131,11 +132,11 @@ class SubmitPage extends React.Component {
       'Chain Snatching',
       'North East India Report',
       'Others',
-      'VERBAL ABUSE',
-      'NON-VERBAL ABUSE',
-      'PHYSICAL ABUSE',
-      'SERIOUS PHYSICAL ABUSE',
-      'OTHER ABUSE',
+      'Verbal abuse',
+      'Non-verbal abuse',
+      'Physical abuse',
+      'Serious physical abuse',
+      'Other abuse',
     ];
     return categories.map((category, index) => this.renderCategory(category, index));
   }
@@ -195,7 +196,9 @@ class SubmitPage extends React.Component {
               </div>
             </div>
             <label>Category</label>
-            {this.renderCategories()}
+            <div className="category-container">
+              {this.renderCategories()}
+            </div>
             <Clickable
               action={() => this.submitForm()}
               className="btn--solid submit-btn"

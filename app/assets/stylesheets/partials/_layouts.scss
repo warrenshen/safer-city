@@ -10,7 +10,8 @@ a {
   color: inherit;
 }
 
-input, textarea {
+input:not([type="checkbox"]),
+textarea {
   @include appearance(none);
   border: 1px solid $d-gray-30;
   border-radius: 3px;
@@ -180,6 +181,13 @@ textarea {
   .submit-btn {
     float: right;
     margin-top: 15px;
+  }
+}
+
+.checkbox-container {
+  label {
+    display: inline-block;
+    margin-left: 5px;
   }
 }
 
