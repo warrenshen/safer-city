@@ -49,7 +49,7 @@ class Report < ActiveRecord::Base
   end
 
   def set_datetime
-    self.datetime ||= DateTime.parse(" #{ self.date } #{ self.time }")
+    self.datetime ||= DateTime.parse("#{ self.date } #{ self.time }")
   end
 
   def severity
