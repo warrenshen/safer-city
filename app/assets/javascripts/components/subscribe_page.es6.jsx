@@ -64,10 +64,18 @@ class SubscribePage extends React.Component {
       <div className="notify-page">
         <Header />
         <div className="container form-container">
-          <h3>{`Total distinct locations: ${this.props.locationsCount}`}</h3>
-          <h3>{`Total notifications: ${this.props.notificationsCount}`}</h3>
           <h1 className="page-title">Subscribe</h1>
           <p className="description">Receive a notification whenever there is a report near your location.</p>
+          <div className="subscribe-stats-container">
+            <div className="stat">
+              <h1>{this.props.locationsCount}</h1>
+              <h3>Total distinct locations</h3>
+            </div>
+            <div className="stat">
+              <h1>{this.props.notificationsCount}</h1>
+              <h3>Total notifications</h3>
+            </div>
+          </div>
           <form className="notify-form">
             <label className="form-label">Location</label>
             <div className="map-container">

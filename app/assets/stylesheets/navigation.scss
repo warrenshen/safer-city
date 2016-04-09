@@ -1,0 +1,15 @@
+.navigation-page {
+  height: calc(100vh - 78px);
+
+  .navbar {
+    margin-bottom: 0;
+  }
+
+  #map {
+    height: 100% !important;
+  }
+
+  #pac-input-dst {
+    margin-left: 20px;
+  }
+}
