@@ -52,7 +52,7 @@ class SubscribePage extends React.Component {
     );
   }
 
-  syncAutocomplete(lat, lng) {
+  syncAutocomplete(location, lat, lng) {
     this.setState({ lat: lat, lng: lng });
   }
 

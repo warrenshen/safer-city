@@ -9,10 +9,21 @@ class SubmitPage extends React.Component {
       category: '',
       date: '',
       description: '',
-      lat: '',
-      lng: '',
+      lat: null,
+      lng: null,
+      location: '',
       time: '',
       title: '',
+    };
+  }
+
+  // --------------------------------------------------
+  // Props
+  // --------------------------------------------------
+  static get propTypes() {
+    return {
+      locationsCount: React.PropTypes.number.isRequired,
+      reportsCount: React.PropTypes.number.isRequired,
     };
   }
 
@@ -21,7 +32,7 @@ class SubmitPage extends React.Component {
   // --------------------------------------------------
   componentDidMount() {
     Mapper.attachListener(
-      (lat, lng) => this.syncAutocomplete(lat, lng),
+      (location, lat, lng) => this.syncAutocomplete(location, lat, lng),
       'form',
     );
   }
@@ -35,10 +46,12 @@ class SubmitPage extends React.Component {
       date: this.state.date,
       description: this.state.description,
       latitude: this.state.lat,
+      location: this.state.location,
       longitude: this.state.lng,
       time: this.state.time,
       title: this.state.title,
     };
+    console.log(attributes);
     var params = { report: attributes };
     var resolve = (response) => window.location = RouteConstants.pages.submitSuccess;
     Requester.post(
@@ -48,8 +61,8 @@ class SubmitPage extends React.Component {
     );
   }
 
-  syncAutocomplete(lat, lng) {
-    this.setState({ lat: lat, lng: lng });
+  syncAutocomplete(location, lat, lng) {
+    this.setState({ location: location, lat: lat, lng: lng });
   }
 
   // --------------------------------------------------
@@ -61,7 +74,17 @@ class SubmitPage extends React.Component {
         <Header />
         <div className="container form-container">
           <h1 className="page-title">Submit a report</h1>
-          <p className="description">Help spread awareness and keep your neighborhood safe.</p>
+          <p className="description">Help spread awareness and keep your neighborhood safe. Please try to include as much detail as possible!</p>
+          <div className="submit-stats-container">
+            <div className="stat">
+              <h1>{this.props.locationsCount}</h1>
+              <h3>Total distinct locations</h3>
+            </div>
+            <div className="stat">
+              <h1>{this.props.reportsCount}</h1>
+              <h3>Total notifications</h3>
+            </div>
+          </div>
           <form className="report-form">
             <label className="form-label">Location</label>
             <div className="map-container">

@@ -2,6 +2,25 @@ $color-list: $red, $orange, $purple;
 $severity-list: 'SEVERE', 'MODERATE', 'MILD';
 
 .report-page {
+  .submit-stats-container {
+    border-bottom: 1px solid $l-gray;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+
+    display: flex;
+    flex-basis: row wrap;
+  }
+
+  .stat {
+    text-align: center;
+    width: 50%;
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+  }
+
   .report-container {
     max-width: 700px;
     padding-bottom: 60px;

@@ -18,7 +18,7 @@ class Mapper {
     var map = new google.maps.Map(
       mapElement,
       {
-        center: {lat: -33.8688, lng: 151.2195},
+        center: { lat: -33.8688, lng: 151.2195 },
         zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
       },
@@ -125,7 +125,7 @@ class Mapper {
             size: new google.maps.Size(71, 71),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(17, 34),
-            scaledSize: new google.maps.Size(25, 25)
+            scaledSize: new google.maps.Size(25, 25),
           };
 
           if (place.geometry.viewport) {
@@ -140,6 +140,7 @@ class Mapper {
     } else {
       searchBox.addListener('places_changed', () => {
         var places = searchBox.getPlaces();
+        var formattedAddress = places[0].formatted_address;
         var lat = places[0].geometry.location.lat();
         var lng = places[0].geometry.location.lng();
         var miles = 20;
@@ -190,7 +191,7 @@ class Mapper {
             aResolve,
           );
         } else if (this.mode === 'form') {
-          this.listener(lat, lng);
+          this.listener(formattedAddress, lat, lng);
         }
 
         if (places.length == 0) {

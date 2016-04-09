@@ -34,21 +34,18 @@ class Report < ActiveRecord::Base
                    :lat_column_name => :latitude,
                    :lng_column_name => :longitude
 
-  reverse_geocoded_by :latitude, :longitude, address: :location
-  after_validation :reverse_geocode, if: :missing_location?
-
   has_many :report_categories
   has_many :categories, through: :report_categories
 
   before_create :set_incident_id
   before_create :set_datetime
 
-  def category_names
-    categories.map(&:name).map(&:titlecase)
+  def self.locations_count
+    select(:location).map(&:location).uniq.count
   end
 
-  def missing_location?
-    location.blank?
+  def category_names
+    categories.map(&:name).map(&:titlecase)
   end
 
   def set_incident_id

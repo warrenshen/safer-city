@@ -9,7 +9,8 @@ class PagesController < ApplicationController
   end
 
   def submit
-
+    @locations_count = Report.locations_count
+    @reports_count = Report.count
   end
 
   def submit_success

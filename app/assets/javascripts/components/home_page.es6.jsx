@@ -8,12 +8,13 @@ class HomePage extends React.Component {
     this.state = {
       reports: [],
       scrollState: false,
-      secondCount: 0,
+      secondCount: 1,
+      secondPercentage: 0,
     };
   }
 
   loop(r) {
-    var rand = Math.round(Math.random() * (250));
+    var rand = Math.round(Math.random() * (500));
     setTimeout(function() {
       r.incrementSecond(r);
       r.loop(r);
@@ -21,10 +22,12 @@ class HomePage extends React.Component {
   }
 
   incrementSecond(r) {
-    var t = Number(r.state.secondCount) + 0.04;
-    var time = t.toFixed(2);
+    var t = Number(r.state.secondCount) + 0.08;
+    var d = t % 1;
+    var time = t;
     r.setState({
       secondCount: time,
+      secondPercentage: d
     });
   }
 
@@ -107,7 +110,11 @@ class HomePage extends React.Component {
             <h1 className="stats-title">Sexual harassment is serious</h1>
             <div className="row">
               <div className="col-md-4 col-sm-4">
-                <h2 className="number">{this.state.secondCount}</h2>
+                <h2 className="number">{Math.floor(this.state.secondCount)}
+                  <div className="bar-chart-background">
+                    <div className="bar-chart" style={{height: 55 * this.state.secondPercentage + "px"}}></div>
+                  </div>
+                </h2>
                 <p className="stat-label">cases since you arrived on this page</p>
               </div>
               <div className="col-md-4 col-sm-4">
