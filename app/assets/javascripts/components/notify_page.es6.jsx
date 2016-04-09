@@ -20,7 +20,7 @@ class NotifyPage extends React.Component {
         <Header />
         <form className="notify-form">
           <FormQuestion
-            action={(event) => this.setState({ email: evewnt.target.value })}
+            action={(event) => this.setState({ email: event.target.value })}
             label="Email"
             value={this.state.email} />
           <FormQuestion
