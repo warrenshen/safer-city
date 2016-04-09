@@ -57,8 +57,8 @@ class ReportPage extends React.Component {
       <div className="report-page">
         <Header />
         <div className="container form-container">
-          <h1 className="page-title">Submit</h1>
-          <p className="description">Submit a report and help spread awareness.</p>
+          <h1 className="page-title">Submit a Report</h1>
+          <p className="description">Help spread awareness and keep your neighborhood safe.</p>
           <form className="report-form">
             <FormQuestion
               action={(event) => this.setState({ title: event.target.value })}
@@ -69,23 +69,30 @@ class ReportPage extends React.Component {
               action={(event) => this.setState({ description: event.target.value })}
               label="Description"
               value={this.state.description}
+              style="textarea"
               type="textarea" />
-            <FormQuestion
-              action={(event) => this.setState({ date: event.target.value })}
-              label="Date"
-              value={this.state.date}
-              type="date" />
-            <FormQuestion
-              action={(event) => this.setState({ time: event.target.value })}
-              label="Time"
-              value={this.state.time}
-              type="time" />
+            <div className="row">
+              <div className="col-md-6">
+                <FormQuestion
+                  action={(event) => this.setState({ date: event.target.value })}
+                  label="Date"
+                  value={this.state.date}
+                  type="date" />
+              </div>
+              <div className="col-md-6">
+                <FormQuestion
+                  action={(event) => this.setState({ time: event.target.value })}
+                  label="Time"
+                  value={this.state.time}
+                  type="time" />
+              </div>
+            </div>
             <FormQuestion
               action={(event) => this.setState({ category: event.target.value })}
               label="Category"
               value={this.state.category}
               type="select" />
-            <p>Location</p>
+            <label>Location</label>
             <div className="map-container">
               <input id="pac-input"
                      className="controls"
@@ -93,7 +100,7 @@ class ReportPage extends React.Component {
                      placeholder="Search Box" />
               <div id="map" style={{height: "100"}}></div>
             </div>
-            <p>Optional</p>
+            <h2 className="form-section-title">Optional</h2>
             <FormQuestion
               action={(event) => this.setState({ title: event.target.value })}
               label="Full Name"
