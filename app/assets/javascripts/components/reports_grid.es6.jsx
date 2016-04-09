@@ -5,13 +5,17 @@ class ReportsGrid extends React.Component {
   // --------------------------------------------------
   renderReport(report) {
     return (
-      <div className="report" key={report.id}>
+      <Clickable
+        className="report"
+        key={report.id}
+        route={RouteConstants.reports.show(report.id)}
+        type="div">
         <div className={`severity severity-${report.severity}`}>
           <span className="fa fa-circle"></span>
         </div>
         <h1 className="title">{`${report.title}`}</h1>
         <p className="description">{report.description}</p>
-      </div>
+      </Clickable>
     );
   }
 

@@ -1,18 +1,18 @@
 class PagesController < ApplicationController
 
   def home
-
-  end
-
-  def report
-
-  end
-
-  def report_success
-
+    @reports = Report.order(created_at: "DESC").first(10)
   end
 
   def search
+
+  end
+
+  def submit
+
+  end
+
+  def submit_success
 
   end
 

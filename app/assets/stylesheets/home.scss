@@ -120,6 +120,7 @@ $severity-list: 'SEVERE', 'MODERATE', 'MILD';
     text-align: left;
     transition: 100ms;
     width: 100%;
+    text-decoration: none;
 
     &:hover {
       box-shadow: 0 0 10px $d-gray-10;

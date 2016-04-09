@@ -4,8 +4,6 @@
 #
 #  id             :integer          not null, primary key
 #  incident_id    :integer
-#  date           :date
-#  time           :time
 #  description    :text
 #  location       :string
 #  country_code   :integer
@@ -25,10 +23,16 @@
 #  updated_at     :datetime         not null
 #  title          :string
 #  locatlity_code :integer
+#  datetime       :datetime
 #
 
 class ReportsController < ApplicationController
   protect_from_forgery except: :create
+
+  def recent
+    @reports = Report.order(created_at DESC).first(10)
+    render json: @reports, each_serializer: ReportsSerializer
+  end
 
   def index
     get_reports
@@ -38,10 +42,15 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
     if @report.save
+      @report.generate_texts
       render json: @report
     else
       render json: @report, status: 422
     end
+  end
+
+  def show
+    @report = Report.find params[:id]
   end
 
   private

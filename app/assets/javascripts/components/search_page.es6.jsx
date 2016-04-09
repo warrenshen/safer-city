@@ -6,6 +6,7 @@ class SearchPage extends React.Component {
   constructor() {
     super();
     this.state = {
+      categories: [],
       reports: [],
     };
   }
@@ -23,8 +24,11 @@ class SearchPage extends React.Component {
   // --------------------------------------------------
   // Helpers
   // --------------------------------------------------
-  syncAutocomplete(categoryArray) {
-    this.setState({ categoryArray: categoryArray });
+  syncAutocomplete(reports, categories) {
+    this.setState({
+      categories: categories,
+      reports: reports,
+    });
   }
 
   // --------------------------------------------------
@@ -39,7 +43,7 @@ class SearchPage extends React.Component {
           <div className="data-container">
             <h2 className="category-title">Statistics</h2>
             <SearchGraphs
-              categoryArray={this.state.categoryArray}
+              categories={this.state.categories}
               reports={this.state.reports} />
             <SearchReports reports={this.state.reports} />
           </div>
