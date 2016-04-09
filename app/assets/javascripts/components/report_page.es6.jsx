@@ -87,10 +87,10 @@ class ReportPage extends React.Component {
               type="select" />
             <p>Location</p>
             <div className="map-container">
-              <input id="pac-input"
-                     className="controls"
-                     type="text"
-                     placeholder="Search Box" />
+              <input
+                className="controls"
+                id="pac-input"
+                placeholder="Search" />
               <div id="map" style={{height: "100"}}></div>
             </div>
             <p>Optional</p>

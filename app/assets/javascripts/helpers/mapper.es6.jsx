@@ -2,10 +2,12 @@ class Mapper {
 
   constructor() {
     this.listener = null;
+    this.mode = null;
   }
 
-  attachListener(listener) {
+  attachListener(listener, mode) {
     this.listener = listener;
+    this.mode = mode;
   }
 
   initializeAutocomplete() {
@@ -42,7 +44,8 @@ class Mapper {
       var miles = 20;
 
       // TODO: get stats and markers and set markers
-      var resolve = (response) => {
+      if (this.mode === 'search') {
+        var resolve = (response) => {
           console.log(response);
 
           // Clear out the old markers.
@@ -52,18 +55,21 @@ class Mapper {
           var markerArray = [];
           var arrayLength = markerArray.length;
           for (var i = 0; i < arrayLength; i++) {
-          var marker = new google.maps.Marker({
-            position: {lat: lat, lng: lng},
-            map: map,
-            title: 'Hello World!'
-          });
-      }
+            var marker = new google.maps.Marker({
+              position: {lat: lat, lng: lng},
+              map: map,
+              title: 'Hello World!'
+            });
+          }
           this.listener(statsDict);
         };
-      Requester.get(
-        ApiConstants.reports.search(lat, lng, miles),
-        resolve,
-      );
+        Requester.get(
+          ApiConstants.reports.search(lat, lng, miles),
+          resolve,
+        );
+      } else if (this.mode === 'form') {
+        this.listener(lat, lng);
+      }
 
       if (places.length == 0) {
         return;

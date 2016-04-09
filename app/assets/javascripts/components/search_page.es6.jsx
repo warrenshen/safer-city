@@ -10,10 +10,19 @@ class SearchPage extends React.Component {
     };
   }
 
+  // --------------------------------------------------
+  // Lifecycle
+  // --------------------------------------------------
   componentDidMount() {
-    Mapper.attachListener((lat, lng) => this.syncAutocomplete(lat, lng));
+    Mapper.attachListener(
+      (lat, lng) => this.syncAutocomplete(lat, lng),
+      'search',
+    );
   }
 
+  // --------------------------------------------------
+  // Helpers
+  // --------------------------------------------------
   syncAutocomplete(stats_dict) {
     this.setState({ stats_dict: stats_dict });
   }
