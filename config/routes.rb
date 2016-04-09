@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :reports, only: [:index, :create]
   resources :subscriptions, only: [:create]
   resources :categories, only: [:index]
+  get "stats/categories", to: "stats#categories"
 
 end
