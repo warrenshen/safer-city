@@ -177,7 +177,16 @@ class Mapper {
                   },
                 );
               }
-              this.listener(aResponse.reports, bResponse.categories);
+
+              var cResolve = (cResponse) => {
+                this.listener(aResponse.reports, bResponse.categories, cResponse);
+
+              }
+
+              Requester.get(
+                ApiConstants.timeStats.search(lat, lng),
+                cResolve,
+              );
             };
 
             Requester.get(

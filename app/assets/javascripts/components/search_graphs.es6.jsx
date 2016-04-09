@@ -4,7 +4,6 @@ class SearchGraphs extends React.Component {
     super();
     this.state = {
       time_frame: '',
-      chartActive: false,
     };
   }
 
@@ -201,7 +200,7 @@ class SearchGraphs extends React.Component {
   // --------------------------------------------------
   render() {
     let charts;
-    if (this.state.chartActive) {
+    if (this.props.categories.length > 0) {
       charts = (
         <div>
           <div className="chart pie-chart">
@@ -214,8 +213,6 @@ class SearchGraphs extends React.Component {
           </div>
         </div>
       )
-    } else {
-      charts = false;
     }
     return (
       <div className="graphs-container">

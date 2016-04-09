@@ -16,7 +16,7 @@ class SearchPage extends React.Component {
   // --------------------------------------------------
   componentDidMount() {
     Mapper.attachListener(
-      (lat, lng) => this.syncAutocomplete(lat, lng),
+      (lat, lng, c) => this.syncAutocomplete(lat, lng, c),
       'search',
     );
   }
@@ -24,10 +24,11 @@ class SearchPage extends React.Component {
   // --------------------------------------------------
   // Helpers
   // --------------------------------------------------
-  syncAutocomplete(reports, categories) {
+  syncAutocomplete(reports, categories, stats) {
     this.setState({
       categories: categories,
       reports: reports,
+      stats: stats,
     });
   }
 
@@ -44,7 +45,8 @@ class SearchPage extends React.Component {
             <h2 className="category-title">Statistics by location</h2>
             <SearchGraphs
               categories={this.state.categories}
-              reports={this.state.reports} />
+              reports={this.state.reports}
+              stats={this.state.stats} />
             <SearchReports reports={this.state.reports} />
           </div>
         </div>
