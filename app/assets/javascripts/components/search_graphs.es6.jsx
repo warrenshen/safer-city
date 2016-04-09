@@ -1,4 +1,3 @@
-
 class SearchGraphs extends React.Component {
 
   // --------------------------------------------------
@@ -8,7 +7,7 @@ class SearchGraphs extends React.Component {
 
     // PIE CHART
     var dataset = [
-      { label: 'Abulia', count: 10 }, 
+      { label: 'Abulia', count: 10 },
       { label: 'Betelgeuse', count: 20 },
       { label: 'Cantaloupe', count: 30 },
       { label: 'Dijkstra', count: 40 }
@@ -16,10 +15,10 @@ class SearchGraphs extends React.Component {
 
     var width = 360;
     var height = 360;
-    var radius = Math.min(width, height) / 2;    
+    var radius = Math.min(width, height) / 2;
 
     var color = d3.scale.category20b();
-    
+
     var svg = d3.select('#d3-pie-chart')
       .append('svg')
       .attr('width', width)
@@ -39,7 +38,7 @@ class SearchGraphs extends React.Component {
       .enter()
       .append('path')
       .attr('d', arc)
-      .attr('fill', function(d, i) { 
+      .attr('fill', function(d, i) {
         return color(d.data.label);
       });
 
@@ -61,7 +60,7 @@ class SearchGraphs extends React.Component {
 
 
   componentDidUpdate() {
-    
+
   }
 
 
