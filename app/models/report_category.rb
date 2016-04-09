@@ -11,5 +11,5 @@
 
 class ReportCategory < ActiveRecord::Base
   belongs_to :report
-  belongs_to :user
+  belongs_to :category
 end
