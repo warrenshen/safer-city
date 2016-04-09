@@ -1,0 +1,76 @@
+$color-list: $red, $orange, $purple;
+$severity-list: 'SEVERE', 'MODERATE', 'MILD';
+
+.report {
+  background-color: white;
+  border: 1px solid $l-gray;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px auto;
+  padding: 20px;
+  text-align: left;
+  transition: 100ms;
+  width: 100%;
+  text-decoration: none;
+
+  &:hover {
+    box-shadow: 0 0 10px $d-gray-10;
+  }
+
+  .severity {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+
+    .fa {
+      font-size: 10px;
+      margin-right: 5px;
+    }
+  }
+
+  .time-label {
+    color: $d-gray-50;
+    float: right;
+    font-size: 13px;
+    margin-top: 2px;
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 7px;
+  }
+
+  .description {
+    color: $d-gray-80;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .location-label {
+    color: $d-gray-50;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    white-space: nowrap;
+
+    .fa {
+      margin-right: 5px;
+    }
+  }
+}
+
+@each $color in $color-list {
+  $i: index($color-list, $color);
+
+  .severity-#{$i - 1} {
+    color: nth($color-list, $i);
+
+    &:after {
+      content: nth($severity-list, $i);
+    }
+  }
+}
