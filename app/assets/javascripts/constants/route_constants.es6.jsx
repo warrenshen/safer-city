@@ -8,6 +8,7 @@ class RouteConstants {
       submitSuccess: '/submit/success',
       subscribe: '/subscribe',
       subscribeSuccess: '/subscribe/success',
+      navigation: '/navigation',
     };
   }
 
