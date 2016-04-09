@@ -11,6 +11,7 @@ gem 'react-rails', '1.5.0'
 gem 'roo'
 
 # Client
+gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'sass-rails'

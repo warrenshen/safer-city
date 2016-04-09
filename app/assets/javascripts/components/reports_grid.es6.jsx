@@ -6,8 +6,11 @@ class ReportsGrid extends React.Component {
   renderReport(report) {
     return (
       <div className="report" key={report.id}>
-        <h6>{`${report.first_name} ${report.last_name}`}</h6>
-        <p>{report.description}</p>
+        <div className={`severity severity-${report.severity}`}>
+          <span className="fa fa-circle"></span>
+        </div>
+        <h1 className="title">{`${report.title}`}</h1>
+        <p className="description">{report.description}</p>
       </div>
     );
   }
