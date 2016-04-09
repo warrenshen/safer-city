@@ -20,6 +20,7 @@ class SearchGraphs extends React.Component {
   // Lifecycle
   // --------------------------------------------------
   componentDidUpdate() {
+    console.log(this.props.categoryArray);
     d3.select("svg").remove();
     d3.select("svg").remove();
     d3.select("#no-content-label")
@@ -32,9 +33,14 @@ class SearchGraphs extends React.Component {
     h = 150,                            //height
     r = 75,                             //radius
     color = d3.scale.category20c();     //builtin range of colors
-    data = [{"label":"one", "value":20},
-            {"label":"two", "value":50},
-            {"label":"three", "value":30}];
+
+    var data = []
+    var cat_array_length = this.props.categoryArray.length;
+    for (var i = 0; i < cat_array_length; i++) {
+      var element = this.props.categoryArray[i]
+      data.push({"label": element.name, "value": element.reports_count})
+    }
+
     var vis = d3.select("#d3-pie-chart")
         .append("svg:svg")              //create the SVG element inside the <body>
         .data([data])                   //associate our data with the document
