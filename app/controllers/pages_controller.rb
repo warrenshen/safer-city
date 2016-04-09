@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def home
-
+    @reports = Report.order(created_at: "DESC").first(10)
   end
 
   def search

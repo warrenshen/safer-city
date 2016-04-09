@@ -6,7 +6,7 @@ class SearchPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      categories: {},
+      categories: [],
       reports: [],
     };
   }
