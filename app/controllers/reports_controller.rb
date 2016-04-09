@@ -60,7 +60,7 @@ class ReportsController < ApplicationController
     end
   end
 
-  def time_stats
+  def hourly_stats
     get_reports
     stats = Hash.new(0)
     @reports.each do |report|

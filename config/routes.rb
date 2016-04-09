@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get "subscribe/success", to: "pages#subscribe_success"
   resources :reports, only: [:create, :index, :show] do
     collection do
-      get "time_stats", to: "reports#time_stats"
+      get "hourly_stats", to: "reports#hourly_stats"
     end
   end
   resources :subscriptions, only: [:create]
