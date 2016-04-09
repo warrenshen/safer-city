@@ -34,17 +34,36 @@ class Mapper {
     searchBox.addListener('places_changed', () => {
       var places = searchBox.getPlaces();
       var lat = places[0].geometry.location.lat();
-      var lon = places[0].geometry.location.lng();
+      var lng = places[0].geometry.location.lng();
+      var miles = 20;
 
-      this.listener(lat, lon);
+      // TODO: get stats and markers and set markers
+      var resolve = (response) => {
+          console.log(response);
+
+          // Clear out the old markers.
+          markers.forEach((marker) => marker.setMap(null));
+          markers = [];
+          var statsDict = []
+          var markerArray = [];
+          var arrayLength = markerArray.length;
+          for (var i = 0; i < arrayLength; i++) {
+          var marker = new google.maps.Marker({
+            position: {lat: lat, lng: lng},
+            map: map,
+            title: 'Hello World!'
+          });
+      }
+          this.listener(statsDict);
+        };
+      Requester.get(
+        ApiConstants.reports.search(lat, lng, miles),
+        resolve,
+      );
 
       if (places.length == 0) {
         return;
       }
-
-      // Clear out the old markers.
-      markers.forEach((marker) => marker.setMap(null));
-      markers = [];
 
       // For each place, get the icon, name and location.
       var bounds = new google.maps.LatLngBounds();

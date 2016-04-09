@@ -14,12 +14,8 @@ class SearchPage extends React.Component {
     Mapper.attachListener((lat, lng) => this.syncAutocomplete(lat, lng));
   }
 
-  syncAutocomplete(lat, lng) {
-    var resolve = (response) => this.setState({ reports: response.reports });
-    Requester.get(
-      ApiConstants.reports.search(lat, lng),
-      resolve,
-    );
+  syncAutocomplete(stats_dict) {
+    this.setState({ stats_dict: stats_dict });
   }
 
   // --------------------------------------------------
