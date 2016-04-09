@@ -9,7 +9,7 @@ class Header extends React.Component {
         <div className="container">
           <a href={RouteConstants.pages.home}>
             <div className="nav-logo-container nav-hide">
-              <img src="/assets/logo.jpg"/>
+              <img src="/assets/logo.png"/>
             </div>
           </a>
           <ul className="nav-links">

@@ -2,7 +2,10 @@ class HomePage extends React.Component {
 
   constructor(props) {
       super(props);
-      this.state = { srollState: false };
+      this.state = {
+        scrollState: false,
+        secondCount: 0,
+      };
   }
 
   // --------------------------------------------------
@@ -77,6 +80,22 @@ class HomePage extends React.Component {
     ];
   }
 
+  loop(r) {
+    var rand = Math.round(Math.random() * (250));
+    setTimeout(function() {
+      r.incrementSecond(r);
+      r.loop(r);
+    }, rand);
+  }
+
+  incrementSecond(r) {
+    var t = Number(r.state.secondCount) + 0.04;
+    var time = t.toFixed(2);
+    r.setState({
+      secondCount: time,
+    });
+  }
+
   componentDidMount() {
     var react = this;
 
@@ -87,7 +106,9 @@ class HomePage extends React.Component {
       if (search > 270) {
         react.setState({ scrollState: true })
       }
-    })
+    });
+
+    this.loop(this);
   }
 
   // --------------------------------------------------
@@ -100,7 +121,7 @@ class HomePage extends React.Component {
           <div className="container">
             <a href={RouteConstants.pages.home}>
               <div className={`nav-logo-container nav-hide nav-scroll-${this.state.scrollState}`}>
-                <img src="/assets/logo.jpg"/>
+                <img src="/assets/logo.png"/>
               </div>
             </a>
             <div className={`nav-search-container nav-hide nav-scroll-${this.state.scrollState}`}>
@@ -132,11 +153,29 @@ class HomePage extends React.Component {
         <div className="container home-grid">
           <div className="home-search">
             <div className="logo-container">
-              <img src="/assets/logo.jpg"/>
+              <img src="/assets/logo.png"/>
             </div>
             <SearchBar />
           </div>
+          <div className="home-stats-container">
+            <h1 className="stats-title">Sexual harassment is serious</h1>
+            <div className="row">
+              <div className="col-md-4 col-sm-4">
+                <h2 className="number">{this.state.secondCount}</h2>
+                <p className="stat-label">cases since you arrived on this page</p>
+              </div>
+              <div className="col-md-4 col-sm-4">
+                <h2 className="number">848</h2>
+                <p className="stat-label">reports of sexual abuse per day</p>
+              </div>
+              <div className="col-md-4 col-sm-4">
+                <h2 className="number stat-arrow">50%</h2>
+                <p className="stat-label">increase in cases since 2013</p>
+              </div>
+            </div>
+          </div>
           <div className="home-reports-container">
+            <h1 className="stats-title">Recent reports</h1>
             <ReportsGrid
               reports={this.generateReports()} />
           </div>
