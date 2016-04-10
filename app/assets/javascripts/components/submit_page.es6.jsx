@@ -87,7 +87,6 @@ class SubmitPage extends React.Component {
       time: this.state.time,
       title: this.state.title,
     };
-    console.log(attributes);
     var params = { report: attributes };
     var resolve = (response) => window.location = RouteConstants.pages.submitSuccess;
     Requester.post(
@@ -142,7 +141,6 @@ class SubmitPage extends React.Component {
   }
 
   render() {
-    console.log(this.state.creationCategories);
     return (
       <div className="report-page">
         <Header />

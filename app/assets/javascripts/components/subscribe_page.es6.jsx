@@ -28,7 +28,7 @@ class SubscribePage extends React.Component {
   // --------------------------------------------------
   componentDidMount() {
     Mapper.attachListener(
-      (lat, lng) => this.syncAutocomplete(lat, lng),
+      (location, lat, lng) => this.syncAutocomplete(location, lat, lng),
       'form',
     );
   }
@@ -39,8 +39,8 @@ class SubscribePage extends React.Component {
   submitForm() {
     var attributes = {
       email: this.state.email,
-      latitude: this.state.lat,
-      longitude: this.state.lng,
+      latitude: this.state.latitude,
+      longitude: this.state.longitude,
       phone_number: this.state.phone_number,
     };
     var params = { subscription: attributes };
@@ -52,8 +52,8 @@ class SubscribePage extends React.Component {
     );
   }
 
-  syncAutocomplete(location, lat, lng) {
-    this.setState({ lat: lat, lng: lng });
+  syncAutocomplete(location, latitude, longitude) {
+    this.setState({ latitude: latitude, longitude: longitude });
   }
 
   // --------------------------------------------------
